@@ -2,7 +2,7 @@
 title: NEL Dapi Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - typescript
+#  - typescript
 
 toc_footers:
   - <a href='/index_En'>English</a>

@@ -2,7 +2,7 @@
 title: NEL Dapi Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
-#  - typescript
+  - typescript
 
 toc_footers:
   - <a href='/index_En'>English</a>
@@ -35,6 +35,8 @@ Teemmo是NEL开发的一款Chrome插件钱包，该钱包力求Dapp开发者在�
 
 
 ## Teemmo 安装与开发
+
+克隆项目
 
 ```
 git clone https://github.com/NewEconoLab/TeemmoWallet.git

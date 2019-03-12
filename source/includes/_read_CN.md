@@ -193,7 +193,7 @@ o3dapi.NEO.getAccount()
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## getBalance
+## getBalance 获取资产余额
 
 ```typescript
 o3dapi.NEO.getBalance({
@@ -228,7 +228,7 @@ o3dapi.NEO.getBalance({
 });
 ```
 
-> Single Address with specific balances requested
+> 单地址特定资产请求
 
 ```typescript
 // input
@@ -252,7 +252,7 @@ o3dapi.NEO.getBalance({
 }
 ```
 
-> Single Address with all balances requested
+> 单地址全部资产（设置显示）请求
 
 ```typescript
 // input
@@ -290,7 +290,7 @@ o3dapi.NEO.getBalance({
 }
 ```
 
-> Multiple address balance queries
+> 多地址请求
 
 ```typescript
 // input
@@ -342,49 +342,49 @@ o3dapi.NEO.getBalance({
 ```
 
 
-Allows the DAPP to query the balance of a user, this includes both native assets (NEO/GAS) and NEP-5 tokens
+允许Dapp为用户查询资产余额, 此方法同时支持全局（UTXO）资产和合约（NEP-5）资产
 
-### Input Arguments
-| Parameter | Type                               | Description                                                                              |
+### 输入参数
+| 参数       | 类型                               | 说明                                                                                     |
 |:--------- |:---------------------------------- |:---------------------------------------------------------------------------------------- |
-| params    | BalanceRequest or BalanceRequest[] | A list of Balance Request Objects, specifying which addresses, and which assets to query |
-| network   | String                             | The call will only work for the networks available in the GetNetworks command            |
+| params    | BalanceRequest or BalanceRequest[] | 一个BalanceRequest结构或者一个BalanceRequest结构组                                         |
+| network   | String                             | 从GetNetworks获取的网络名称            |
 
-#### Balance Request
-| Parameter  | Type     | Description                                                                   |
+#### BalanceRequest 余额请求结构
+| 参数        | 类型     | 说明                                                                          |
 |:---------- |:-------- |:----------------------------------------------------------------------------- |
-| address    | String   | The address whose balance you want to query                                   |
-| assets     | String[] | A list of contract hash (or symbold on MainNet only) to query the balance for |
-| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true          |
+| address    | String   | 希望获取余额的地址                                                              |
+| assets     | String[] | 一个资产ID或一个资产ID组                                                        |
+| fetchUTXO? | boolean  | 这是一个可选的参数，表示是否需要返回UTXO（Teemmo暂时不支持）          |
 
-### Success Response
-| Parameter | Type              | Description                                                                          |
+### 成功的返回
+| 参数       | 类型              | 说明                                                                                 |
 |:--------- |:----------------- |:------------------------------------------------------------------------------------ |
-| address_1 | BalanceResponse[] | This key is the actual address of the query eg. "AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru" |
-| address_2 | BalanceResponse[] | This key is the actual address of the query eg. "AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ" |
-| address_n | BalanceResponse[] | This key is the actual address of the query eg. "AUdawyrLMskxXMUE8osX9mSLKz8R7777kE" |
+| address_1 | BalanceResponse[] | 键是地址，比如"AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru"                                    |
+| address_2 | BalanceResponse[] | 键是地址，比如"AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ"                                    |
+| address_n | BalanceResponse[] | 键是地址，比如"AUdawyrLMskxXMUE8osX9mSLKz8R7777kE"                                    |
 
 <aside class="notice">
-The amount of addresses is n where n is the number of addresses specified in your query
+address_1等表示真实地址的指代
 </aside>
 
 
-#### BalanceResponse
-| Parameter | Type    | Description                                                                                          |
+#### 余额返回结构
+| 参数       | 类型    | 说明                                                                                                 |
 |:--------- |:------- |:---------------------------------------------------------------------------------------------------- |
-| assetID   | String  | ID of the given asset                                                                                |
-| symbol    | String  | Symbol of the given asset                                                                            |
-| amount    | String  | Double Value of the balance represented as a String                                                  |
-| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS |
+| assetID   | String  | 资产ID                                                                                                |
+| symbol    | String  | 资产的单位名称                                                                                         |
+| amount    | String  | 资产的余额                                                                                            |
+| unspent   | UTXO[]? | 未使用的UTXO（如果入参fetchUTXO为true）（Teemmo暂时不支持）                                             |
 
-#### UTXO
-| Parameter      | Type   | Description                                                           |
+#### UTXO结构
+| 参数           | 类型    | 说明                                                                  |
 |:-------------- |:------ |:--------------------------------------------------------------------- |
-| asset          | String | Script hash of the native asset                                       |
-| createdAtBlock | String | Block number where this utxo was created                              |
-| index          | Int    | Output index of the UTXO relative to the txid in which it was created |
-| txid           | String | The transaction id of this UTXO                                       |
-| value          | String | The double value of this UTXO represented as a String                 |
+| asset          | String | 资产ID                                                                |
+| createdAtBlock | String | UTXO创建的块高度                                                       |
+| index          | Int    | UTXO创建交易中的output中的排序号                                        |
+| txid           | String | UTXO所在交易的txid                                                     |
+| value          | String | UTXO的金额                                                             |
 
 
 ## getStorage

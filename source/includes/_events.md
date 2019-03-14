@@ -51,9 +51,9 @@ On a NETWORK_CHANGED event, the user has changed the network their provider wall
 | networks       | String[] | A list of all networks which this wallet provider allows access to |
 | defaultNetwork | String   | Network the wallet is currently set to                             |
 
-# Event Methods
+## Event Methods
 
-## addEventListener
+### addEventListener
 
 ```typescript
 o3dapi.NEO.addEventListener(o3dapi.NEO.Constants.EventName.ACCOUNT_CHANGED, data => {
@@ -63,7 +63,7 @@ o3dapi.NEO.addEventListener(o3dapi.NEO.Constants.EventName.ACCOUNT_CHANGED, data
 
 Method is used to add a callback method to be triggered on a specified event.
 
-## removeEventListener
+### removeEventListener
 
 ```typescript
 o3dapi.NEO.removeEventListener(o3dapi.NEO.Constants.EventName.ACCOUNT_CHANGED);

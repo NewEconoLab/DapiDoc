@@ -1,5 +1,6 @@
-# Errors
-The NEO dAPI will provide these basic errors. It is up to the wallet provider to provide additional information if they choose:
+# 错误
+
+这里我们定义了一些常见错误，提示Dapp改正方向
 
 | Error Type         | Meaning                                                                     |
 | ------------------ | --------------------------------------------------------------------------- |

@@ -387,7 +387,7 @@ address_1等表示真实地址的指代
 | value          | String | UTXO的金额                                                             |
 
 
-## getStorage
+## getStorage 获取存储区值
 
 ```typescript
 o3dapi.NEO.getStorage({
@@ -414,7 +414,7 @@ o3dapi.NEO.getStorage({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -423,28 +423,28 @@ o3dapi.NEO.getStorage({
 ```
 
 
-Returns the raw value located in contract storage
+返回合约私有化存储区的值
 
-### Input Arguments
-| Parameter  | Type   | Description                                                  |
+### 输入参数
+| 参数名     | 类型    | 说明                                                          |
 |:---------- |:------ |:------------------------------------------------------------ |
-| scriptHash | String | Scripthash of the contract whose storage you are querying on |
-| key        | String | Key of the storage value to retrieve from the contract       |
-| network    | String | Network alias to submit this request to.                     |
+| scriptHash | String | 私有化存储区数据所属的合约Hash                                  |
+| key        | String | 需要查询的数据所对应的唯一键（需要转化为hex string）              |
+| network    | String | 网络类别选择                                                   |
 
-### Success Response
-| Parameter | Type   | Description                               |
+### 成功的返回
+| 参数名     | 类型   | 说明                                       |
 |:--------- |:------ |:----------------------------------------- |
-| result    | String | The raw value located in contract storage |
+| result    | String | 私有化存储区数据的hex string表示            |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## invokeRead
+## invokeRead 只读模拟执行合约调用
 
 ```typescript
 o3dapi.NEO.invokeRead({
@@ -480,7 +480,7 @@ o3dapi.NEO.invokeRead({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -496,94 +496,39 @@ o3dapi.NEO.invokeRead({
 }
 ```
 
-Execute a contract invocation in read-only mode.
+以只读模式模拟执行合约方法
 
-### Input Arguments
-| Parameter  | Type       | Description                                                                    |
+### 输入参数   
+| 参数名      | 类型       | 说明                                                                           |
 |:---------- |:---------- |:------------------------------------------------------------------------------ |
 | scriptHash | String     | The script hash of the contract you want to invoke a read on                   |
 | operation  | String     | The operation on the smart contract that you want to invoke a read on          |
 | args       | Argument[] | The input arguments necessary to perform this operation                        |
 | network    | String     | Network alias to submit this request to. If omitted, will default to "MainNet" |
 
-#### Argument
-| Parameter | Type   | Description                                               |
+#### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
 | type      | String | The type of the argument with you are using               |
 | value     | String | String representation of the argument which you are using |
 
 <aside class =notice>
-Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
 </aside>
 
-### Success Response
-The wallet will return the direct response from the RPC node.
+### 成功的返回
+结果将从CLI RPC接口直接返回
 
-| Parameter    | Type       | Description                                                                                   |
+| 参数名        | 类型       | 说明                                                                                          |
 |:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
 | script       | String     | The script which was run                                                                      |
 | state        | String     | Status of the executeion                                                                      |
 | gas_consumed | String     | Estimated amount of GAS to be used to execute the invocation. (Up to 10 free per transaction) |
 | stack        | Argument[] | An array of response arguments                                                                |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
-
-
-## verifyMessage
-
-```typescript
-o3dapi.NEO.verifyMessage({
-  message: '058b9e03e7154e4db1e489c99256b7faHello World!',
-  data: '0147fb89d0999e9d8a90edacfa26152fe695ec8b3770dcad522048297ab903822e12472364e254ff2e088fc3ebb641cc24722c563ff679bb1d1623d08bd5863d0d',
-  publicKey: '0241392007396d6ef96159f047967c5a61f1af0871ecf9dc82afbedb68afbb949a',
-})
-.then(({result: bool}) => {
-  console.log('Signature data matches provided message and public key: ' + result);
-})
-.catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case NO_PROVIDER:
-      console.log('No provider available.');
-      break;
-    case CONNECTION_DENIED:
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-  }
-});
-```
-
-> Example Response
-
-```typescript
-{
-  result: true,
-}
-```
-
-Returns whether the provided signature data matches the provided message and was signed by the account of the provided public key.
-
-### Input Arguments
-
-| Parameter | Type   | Description                                            |
-|:--------- |:------ |:------------------------------------------------------ |
-| message   | String | The original signed message                            |
-| data      | String | The signature data                                     |
-| publicKey | String | The public key of the account used to sign the message |
-
-### Success Response
-
-| Parameter | Type    | Description                                                                |
-|:--------- |:------- |:-------------------------------------------------------------------------- |
-| result    | Boolean | Whether the provided signature matches the provided message and public key |
-
-### Error Response
-| Parameter   | Type    | Description                                   |
-|:----------- |:------- |:--------------------------------------------- |
-| type        | String  | The type of error which has occurred          |
-| description | String  | A description of the error which has occurred |
-| data        | String? | Any raw data associated with the error        |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |

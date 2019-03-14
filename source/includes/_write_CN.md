@@ -1,6 +1,6 @@
-# Write Methods
+# 写类型方法
 
-Write methods will alter the state on the blockchain, and require a user signature.
+写类型方法会修改区块状态，并且需要用户私钥签名（需要用户显式允许）
 
 ## send
 

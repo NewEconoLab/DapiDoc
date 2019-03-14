@@ -5,11 +5,18 @@ language_tabs: # must be one of https://git.io/vQNgJ
 #  - typescript
 
 toc_footers:
-  - <a href='/index_En'>English</a>
   - <a href='https://nel.group/'>NewEconoLabs NEL</a>
 
 includes:
   - _read_CN.md
+  - _write_CN.md
+  - _events_CN.md
+  - _errors_CN.md
+  - _read.md
+  - _write.md
+  - _events.md
+  - _errors.md
+
 
 search: true
 ---

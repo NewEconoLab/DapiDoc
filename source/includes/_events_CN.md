@@ -1,6 +1,6 @@
-# Events
-Events are a way for the wallet to asynchronously with the DAPP when certain changes occur to the state of the wallet that might be relevant for the
+# 事件
 
+事件是一种钱包（Dapi提供者）主动通知方式，被授权的Dapp能够在事件发生时被动的捕获事件和相关数据，并据此调整Dapp的行为模式。
 
 ## READY
 On a READY event, the callback will fire with a single argument with information about the wallet provider. At any time a READY event listener is added, it will immidiately be called if the provider is already in a ready state. This provides a single flow for dapp developers since this listener should start any and all interactions with the dapi protocol.

@@ -273,7 +273,7 @@ Teemmo.NEO.invokeGroup({
 //merge=false
 [
   {
-    "txid": "0x045e1612d2dd2edf29d6bb45657329bacc299072655691f9cc0f486fb649a30d",
+    "txid": "045e1612d2dd2edf29d6bb45657329bacc299072655691f9cc0f486fb649a30d",
     "nodeUrl": "https://api.nel.group/api"
   },
   {

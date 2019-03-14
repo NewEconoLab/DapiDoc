@@ -273,7 +273,7 @@ Teemmo.NEO.invokeGroup({
 //merge=false
 [
   {
-    "txid": "0x045e1612d2dd2edf29d6bb45657329bacc299072655691f9cc0f486fb649a30d",
+    "txid": "045e1612d2dd2edf29d6bb45657329bacc299072655691f9cc0f486fb649a30d",
     "nodeUrl": "https://api.nel.group/api"
   },
   {
@@ -283,16 +283,16 @@ Teemmo.NEO.invokeGroup({
 ]
 ```
 
-本方法构造合约调用交易组并发送，并且内涵两种模式：聚合模式和非聚合模式：
+This method constructs a contract to call a transaction group and sends it, and has two modes: merge mode and non-merge mode:
 
-聚合模式：钱包将输入的每个Invoke合约调用操作按照顺序统一构造进入 **一个单一的** 合约调用交易体，使得多个合约方法能够在一个交易中执行完成。该模式适合多个不同合约的小操作（耗费GAS少的）合并一个交易。聚合模式需要注意，是否聚合后会是的脚本执行超过10GAS。聚合模式下，交易的总的fee为各Invoke元素中fee之和。
+Merge mode: The wallet will construct each Invoke contract call operation to be entered in order into **a single** contract invoke transaction body, enabling multiple contract methods to be executed in one transaction. This mode is suitable for small transactions (less costly GAS) for multiple different contracts to be merged into one transaction. Regarding the merge mode, it needs to be paid attention to whether the GAS consumption of the script execution will surpass 10GAS after the merge. In the merge mode, the total fee of the transaction is the sum of the fees in each Invoke element.
 
-非聚合模式：钱包将输入的每个Inovke合约调用操作按照顺序构造为 **多个独立的** 合约调用交易体，只有前一个交易被确认已经共识（上链）才会发送下一个交易。该模式适合一系列关联的合约操作，按先后逻辑关系自动搭接执行。
+Non-merge mode: The wallet will construct each Inovke contract call operation to be entered in order as **multiple independent** contract invoke transaction bodies. Only after the previous transaction is confirmed as consensus (confirmed on the blockchain), the next transaction will be sent. This mode is suitable for a series of associated contract operations, and is automatically lined up and executed in a logical relationship.
 
-Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txid作为下一个交易的输入参数，同时支持聚合模式和非聚合模式。但是有以下限制：
-- Hook_Txid不能出现在第一个Invoke元素
-- Hook_Txid的value必须是0，意为只能取第一个交易的txid
-- 使用Hook_Txid时，在聚合模式下，最多只能定义两个Invoke元素
+Hook_Txid: This type is specific to the InvokeGroup method, which means that the txid of the previous transaction is used as the input parameter of the next transaction, and both the merge mode and the non-merge mode are supported. However, there are the following restrictions:
+- Hook_Txid cannot appear in the first Invoke element
+- The value of Hook_Txid must be 0, meaning that only the txid of the first transaction can be taken.
+- When using Hook_Txid, you can only define up to two Invoke elements in the merge mode.
 
 ### Input arguments
 | Parameter | Type     | Description                                               |

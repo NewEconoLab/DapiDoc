@@ -5,7 +5,7 @@ Write methods will alter the state on the blockchain, and require a user signatu
 ## send_EN
 
 ```typescript
-o3dapi.NEO.send({
+Teemmo.NEO.send({
   fromAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   toAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   asset: 'GAS',
@@ -81,7 +81,7 @@ It is reccommended that the DAPP take appropriate levels of risk prevention when
 
 ## Invoke_EN
 ```typescript
-o3dapi.NEO.invoke({
+Teemmo.NEO.invoke({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   operation: 'storeData',
   arguments: [

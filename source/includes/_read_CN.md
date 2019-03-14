@@ -501,16 +501,16 @@ o3dapi.NEO.invokeRead({
 ### 输入参数   
 | 参数名      | 类型       | 说明                                                                           |
 |:---------- |:---------- |:------------------------------------------------------------------------------ |
-| scriptHash | String     | The script hash of the contract you want to invoke a read on                   |
-| operation  | String     | The operation on the smart contract that you want to invoke a read on          |
-| args       | Argument[] | The input arguments necessary to perform this operation                        |
-| network    | String     | Network alias to submit this request to. If omitted, will default to "MainNet" |
+| scriptHash | String     | 需要执行的合约的Hash                                                             |
+| operation  | String     | 需要执行的合约的方法名                                                           |
+| args       | Argument[] | Argument合约参数组                                                                  |
+| network    | String     | 网络类别选择                                                                    |
 
 #### Argument参数结构
 | 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
-| type      | String | The type of the argument with you are using               |
-| value     | String | String representation of the argument which you are using |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
 
 <aside class =notice>
 type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
@@ -521,10 +521,10 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 
 | 参数名        | 类型       | 说明                                                                                          |
 |:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
-| script       | String     | The script which was run                                                                      |
-| state        | String     | Status of the executeion                                                                      |
-| gas_consumed | String     | Estimated amount of GAS to be used to execute the invocation. (Up to 10 free per transaction) |
-| stack        | Argument[] | An array of response arguments                                                                |
+| script       | String     | 调用的合约的hash                                                                               |
+| state        | String     | 执行状态结果                                                                                   |
+| gas_consumed | String     | 预估的系统费需求（不包括写操作的费用）                                                            |
+| stack        | Argument[] | 具体的返回数据                                                                                 |
 
 ### 失败的返回
 | 参数名       | 类型    | 说明                                         |

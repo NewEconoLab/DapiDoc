@@ -2,7 +2,7 @@
 
 读方法不改变链数据. 它帮助你为你的用户查询信息, 也为你的Dapp提供必要的信息:
 
-## getProvider 获得提供者信息
+## getProvider_获得提供者信息
 
 ```typescript
 Teemmo.NEO.getProvider()
@@ -85,7 +85,7 @@ Teemmo.NEO.getProvider()
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## getNetworks 获取网络参数
+## getNetworks_获取网络参数
 
 ```typescript
 dapi.NEO.getNetworks()
@@ -143,7 +143,7 @@ dapi.NEO.getNetworks()
 | data        | String? | 错误的相关数据                                |
 
 
-## getAccount 获取账户信息
+## getAccount_获取账户信息
 
 ```typescript
 Teemmo.NEO.getAccount()
@@ -192,7 +192,7 @@ Teemmo.NEO.getAccount()
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## getBalance 获取资产余额
+## getBalance_获取资产余额
 
 ```typescript
 Teemmo.NEO.getBalance({
@@ -386,7 +386,7 @@ address_1等表示真实地址的指代
 | value          | String | UTXO的金额                                                             |
 
 
-## getStorage 获取存储区值
+## getStorage_获取存储区值
 
 ```typescript
 Teemmo.NEO.getStorage({
@@ -443,7 +443,7 @@ Teemmo.NEO.getStorage({
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## invokeRead 只读模拟执行合约调用
+## invokeRead_只读模拟执行合约调用
 
 ```typescript
 Teemmo.NEO.invokeRead({
@@ -532,7 +532,7 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## invokeReadGroup 只读模拟执行合约调用组
+## invokeReadGroup_只读模拟执行合约调用组
 
 ```typescript
 Teemmo.NEO.invokeReadGroup({

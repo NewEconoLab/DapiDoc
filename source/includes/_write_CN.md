@@ -2,7 +2,7 @@
 
 写类型方法会修改区块状态，并且需要用户私钥签名（需要用户显式允许）
 
-## send
+## send 发送转账交易
 
 ```typescript
 Teemmo.NEO.send({

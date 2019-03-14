@@ -5,7 +5,7 @@
 ## send
 
 ```typescript
-o3dapi.NEO.send({
+Teemmo.NEO.send({
   fromAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   toAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   asset: 'GAS',
@@ -81,7 +81,7 @@ It is reccommended that the DAPP take appropriate levels of risk prevention when
 
 ## Invoke
 ```typescript
-o3dapi.NEO.invoke({
+Teemmo.NEO.invoke({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   operation: 'storeData',
   arguments: [
@@ -193,7 +193,7 @@ Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"
 ## signMessage
 
 ```typescript
-o3dapi.NEO.signMessage({
+Teemmo.NEO.signMessage({
   message: 'Hello World!',
 })
 .then((signedMessage: SignedMessage) => {

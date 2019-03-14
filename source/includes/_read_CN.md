@@ -5,7 +5,7 @@
 ## getProvider 获得提供者信息
 
 ```typescript
-o3dapi.NEO.getProvider()
+Teemmo.NEO.getProvider()
 .then((provider: Provider) => {
   const {
     name,
@@ -147,7 +147,7 @@ dapi.NEO.getNetworks()
 ## getAccount 获取账户信息
 
 ```typescript
-o3dapi.NEO.getAccount()
+Teemmo.NEO.getAccount()
 .then((account: Account) => {
   const {
     address,
@@ -196,7 +196,7 @@ o3dapi.NEO.getAccount()
 ## getBalance 获取资产余额
 
 ```typescript
-o3dapi.NEO.getBalance({
+Teemmo.NEO.getBalance({
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
     assets: ['NKN']
@@ -390,7 +390,7 @@ address_1等表示真实地址的指代
 ## getStorage 获取存储区值
 
 ```typescript
-o3dapi.NEO.getStorage({
+Teemmo.NEO.getStorage({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   key: 'game.status',
   network: 'TestNet'
@@ -447,7 +447,7 @@ o3dapi.NEO.getStorage({
 ## invokeRead 只读模拟执行合约调用
 
 ```typescript
-o3dapi.NEO.invokeRead({
+Teemmo.NEO.invokeRead({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   operation: 'calculatorAdd',
   arguments: [
@@ -521,10 +521,129 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 
 | 参数名        | 类型       | 说明                                                                                          |
 |:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
+| script       | String     | 调用合约的脚本                                                                                 |
+| state        | String     | 执行状态结果                                                                                   |
+| gas_consumed | String     | 预估的系统费需求（不包括写操作的费用）                                                            |
+| stack        | Argument[] | 具体的返回数据组                                                                                |
+
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
+|:----------- |:------- |:-------------------------------------------- |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
+
+## invokeReadGroup 只读模拟执行合约调用组
+
+```typescript
+Teemmo.NEO.invokeReadGroup({
+  "group":[
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "totalSupply",
+          "arguments": [],
+          "network": "TestNet"
+      },
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "name",
+          "arguments": [],
+          "network": "TestNet"
+      },
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "symbol",
+          "arguments":[],
+          "network": "TestNet"
+      },
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "decimals",
+          "arguments": [],
+          "network": "TestNet"
+      }
+  ]
+})
+.then((result: Object) => {
+  console.log('Read invocation result: ' + JSON.stringigy(result));
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case NO_PROVIDER:
+      console.log('No provider available.');
+      break;
+    case CONNECTION_REFUSED:
+      console.log('Connection dApp not connected. Please call the "connect" function.');
+      break;
+   case RPC_ERROR:
+    console.log('There was an error when broadcasting this transaction to the network.');
+    break;
+  }
+});
+```
+
+> 返回示例
+
+```typescript
+{
+  "script": '8h89fh398f42f.....89hf2894hf9834',
+  "state": "HALT, BREAK",
+  "gas_consumed": "0.648",
+  "stack": [
+    {
+      "type": "ByteArray",
+      "value": "00e8764817"
+    },
+    {
+      "type": "ByteArray",
+      "value": "4e454f204e616d6520437265646974"
+    },
+    {
+      "type": "ByteArray",
+      "value": "4e4e43"
+    },
+    {
+      "type": "Integer",
+      "value": "2"
+    }
+  ]
+}
+```
+
+以只读模式模拟执行合约方法组，可以一次性获取合约中多个信息，比如一次性获取NEP5所有基本信息
+
+### 输入参数
+| 参数名      | 类型             | 说明                                                                           |
+|:---------- |:-----------------|:------------------------------------------------------------------------------ |
+| group      | invokeRead[]     | invokeRead入参数组                                                              |
+
+#### invokeRead入参结构
+| 参数名      | 类型       | 说明                                                                           |
+|:---------- |:---------- |:------------------------------------------------------------------------------ |
+| scriptHash | String     | 调用合约的脚本                                                                   |
+| operation  | String     | 需要执行的合约的方法名                                                           |
+| args       | Argument[] | Argument合约参数组                                                                  |
+| network    | String     | 网络类别选择                                                                    |
+
+#### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
+|:--------- |:------ |:--------------------------------------------------------- |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
+
+<aside class =notice>
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
+</aside>
+
+### 成功的返回
+结果将从CLI RPC接口直接返回
+
+| 参数名        | 类型       | 说明                                                                                          |
+|:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
 | script       | String     | 调用的合约的hash                                                                               |
 | state        | String     | 执行状态结果                                                                                   |
 | gas_consumed | String     | 预估的系统费需求（不包括写操作的费用）                                                            |
-| stack        | Argument[] | 具体的返回数据                                                                                 |
+| stack        | Argument[] | 具体的返回数据组                                                                                |
 
 ### 失败的返回
 | 参数名       | 类型    | 说明                                         |

@@ -43,17 +43,16 @@ Teemmo.NEO.getProvider()
 
 ```typescript
 {
-  name: 'Awesome Wallet',
-  website: 'https://www.awesome.com',
-  version: 'v0.0.1',
-  compatibility: [
-    'NEP-14',
-    'NEP-23',
-    'NEP-29'
+  "name": "TeemmoWallet",
+  "version": "0.1",
+  "website": "nel.group",
+  "compatibility": [
+    "typescript",
+    "javascript"
   ],
-  extra: {
-    theme: 'Dark Mode',
-    currency: 'USD',
+  "extra": {
+    "theme": "",
+    "currency": ""
   }
 }
 ```
@@ -97,10 +96,10 @@ dapi.NEO.getNetworks()
   } = response.networks;
 
   console.log('Networks: ' + networks);
-  // eg. ["MainNet", "TestNet", "PrivateNet"]
+  // eg. ["TestNet", "TestNet", "PrivateNet"]
 
   console.log('Default network: ' + defaultNetwork);
-  // eg. "MainNet"
+  // eg. "TestNet"
 })
 .catch(({type: string, description: string, data: any}) => {
   switch(type) {
@@ -118,7 +117,7 @@ dapi.NEO.getNetworks()
 
 ```typescript
 {
-  networks: ["MainNet", "TestNet", "PrivateNet"],
+  networks: ["TestNet", "TestNet", "PrivateNet"],
   defaultNetwork: "TestNet",
 }
 ```
@@ -197,11 +196,11 @@ Teemmo.NEO.getAccount()
 
 ```typescript
 Teemmo.NEO.getBalance({
-  params: {
-    address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
-    assets: ['NKN']
+  params: {  
+    "address": "ASBhJFN3XiDu38EdEQyMY3N2XwGh1gd5WW",  
+    "assets": ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"]
   },
-  network: 'MainNet',
+  network: 'TestNet',
 })
 .then((results: BalanceResults) => {
   Object.keys(results).forEach(address => {
@@ -231,21 +230,21 @@ Teemmo.NEO.getBalance({
 > 单地址特定资产请求
 
 ```typescript
-// input
+// 输入
 {
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
-    assets: ['NKN']
+    assets: ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"]
   },
-  network: 'MainNet',
+  network: 'TestNet',
 }
 
-// output
+// 输出
 {
   AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru: [
     {
-      assetID: 'c36aee199dbba6c3f439983657558cfb67629599',
-      symbol: 'NKN',
+      assetID: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'GAS',
       amount: '0.00000233',
     }
   ],
@@ -255,15 +254,15 @@ Teemmo.NEO.getBalance({
 > 单地址全部资产（设置显示）请求
 
 ```typescript
-// input
+// 输入
 {
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
   },
-  network: 'MainNet',
+  network: 'TestNet',
 }
 
-// output
+// 输出
 {
   AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru: [
     {
@@ -277,8 +276,8 @@ Teemmo.NEO.getBalance({
       amount: '777.0001',
     },
     {
-      assetID: 'c36aee199dbba6c3f439983657558cfb67629599',
-      symbol: 'NKN',
+      assetID: '74f2dc36a68fdc4682034178eb2220729231db76',
+      symbol: 'CGAS',
       amount: '0.00000233',
     },
     {
@@ -293,7 +292,7 @@ Teemmo.NEO.getBalance({
 > 多地址请求
 
 ```typescript
-// input
+// 输入
 {
   params: [
     {
@@ -301,10 +300,10 @@ Teemmo.NEO.getBalance({
     },
     {
       address: 'AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ',
-      asset: 'PHX',
+      asset: ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"],
     },
   ],
-  network: 'MainNet',
+  network: 'TestNet',
 }
 
 // output
@@ -321,8 +320,8 @@ Teemmo.NEO.getBalance({
       amount: '777.0001',
     },
     {
-      assetID: 'c36aee199dbba6c3f439983657558cfb67629599',
-      symbol: 'NKN',
+      assetID: '74f2dc36a68fdc4682034178eb2220729231db76',
+      symbol: 'CGAS',
       amount: '0.00000233',
     },
     {
@@ -333,8 +332,8 @@ Teemmo.NEO.getBalance({
   ],
   AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ: [
     {
-      assetID: '1578103c13e39df15d0d29826d957e85d770d8c9',
-      symbol: 'PHX',
+      assetID: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'GAS',
       amount: '11000',
     }
   ]
@@ -460,7 +459,7 @@ Teemmo.NEO.invokeRead({
       value: 10
     }
   ],
-  network: 'PrivNet'
+  network: 'TestNet'
 })
 .then((result: Object) => {
   console.log('Read invocation result: ' + JSON.stringigy(result));
@@ -620,7 +619,7 @@ Teemmo.NEO.invokeReadGroup({
 #### invokeRead入参结构
 | 参数名      | 类型       | 说明                                                                           |
 |:---------- |:---------- |:------------------------------------------------------------------------------ |
-| scriptHash | String     | 调用合约的脚本                                                                   |
+| scriptHash | String     | 调用的合约Hash                                                                   |
 | operation  | String     | 需要执行的合约的方法名                                                           |
 | args       | Argument[] | Argument合约参数组                                                                  |
 | network    | String     | 网络类别选择                                                                    |
@@ -640,7 +639,7 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 
 | 参数名        | 类型       | 说明                                                                                          |
 |:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
-| script       | String     | 调用的合约的hash                                                                               |
+| script       | String     | 调用合约的脚本                                                                              |
 | state        | String     | 执行状态结果                                                                                   |
 | gas_consumed | String     | 预估的系统费需求（不包括写操作的费用）                                                            |
 | stack        | Argument[] | 具体的返回数据组                                                                                |

@@ -5,7 +5,7 @@ Read methods do not alter the state of the blockchain. It can help you query inf
 ## getProvider
 
 ```typescript
-o3dapi.NEO.getProvider()
+Teemmo.NEO.getProvider()
 .then((provider: Provider) => {
   const {
     name,
@@ -43,17 +43,16 @@ o3dapi.NEO.getProvider()
 
 ```typescript
 {
-  name: 'Awesome Wallet',
-  website: 'https://www.awesome.com',
-  version: 'v0.0.1',
-  compatibility: [
-    'NEP-14',
-    'NEP-23',
-    'NEP-29'
+  "name": "TeemmoWallet",
+  "version": "0.1",
+  "website": "nel.group",
+  "compatibility": [
+    "typescript",
+    "javascript"
   ],
-  extra: {
-    theme: 'Dark Mode',
-    currency: 'USD',
+  "extra": {
+    "theme": "",
+    "currency": ""
   }
 }
 ```
@@ -97,10 +96,10 @@ dapi.NEO.getNetworks()
   } = response.networks;
 
   console.log('Networks: ' + networks);
-  // eg. ["MainNet", "TestNet", "PrivateNet"]
+  // eg. ["TestNet", "TestNet", "PrivateNet"]
 
   console.log('Default network: ' + defaultNetwork);
-  // eg. "MainNet"
+  // eg. "TestNet"
 })
 .catch(({type: string, description: string, data: any}) => {
   switch(type) {
@@ -118,7 +117,7 @@ dapi.NEO.getNetworks()
 
 ```typescript
 {
-  networks: ["MainNet", "TestNet", "PrivateNet"],
+  networks: ["TestNet", "TestNet", "PrivateNet"],
   defaultNetwork: "TestNet",
 }
 ```
@@ -147,7 +146,7 @@ None
 ## getAccount
 
 ```typescript
-o3dapi.NEO.getAccount()
+Teemmo.NEO.getAccount()
 .then((account: Account) => {
   const {
     address,
@@ -193,66 +192,15 @@ Return the Account that is currently connected to the dApp.
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-
-## getPublicKey
-
-```typescript
-o3dapi.NEO.getPublicKey()
-.then((publicKeyData: PublicKeyData) => {
-  const {
-    address,
-    publicKey,
-  } = publicKeyData;
-
-  console.log('Account address: ' + address);
-  console.log('Account public key: ' + publicKey);
-})
-.catch(({type: string, description: string, data: any}) => {
-  switch(type) {
-    case NO_PROVIDER:
-      console.log('No provider available.');
-      break;
-    case CONNECTION_DENIED:
-      console.log('The user rejected the request to connect with your dApp');
-      break;
-  }
-});
-```
-
-> Example Response
-
-```typescript
-{
-  address: 'ATUaTd3LA4kZiyB6it9fdb5oJpZYMBF4DX',
-  publicKey: '03fa41b6ff75ebeff8464556629cfceae7402f5d815626a7a6542f786974b942e0'
-}
-```
-
-Return the public key of the Account that is currently connected to the dApp.
-
-### Success Response
-| Parameter | Type   | Description                                                           |
-|:--------- |:------ |:--------------------------------------------------------------------- |
-| address   | String | The address of the account that is currently connected to the dapp    |
-| publicKey | String | The public key of the account that is currently connected to the dapp |
-
-### Error Response
-| Parameter   | Type    | Description                                  |
-|:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
-
-
 ## getBalance
 
 ```typescript
-o3dapi.NEO.getBalance({
-  params: {
-    address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
-    assets: ['NKN']
+Teemmo.NEO.getBalance({
+  params:{  
+    "address": "ASBhJFN3XiDu38EdEQyMY3N2XwGh1gd5WW",  
+    "assets": ["74f2dc36a68fdc4682034178eb2220729231db76"]
   },
-  network: 'MainNet',
+  network: 'TestNet',
 })
 .then((results: BalanceResults) => {
   Object.keys(results).forEach(address => {
@@ -286,17 +234,17 @@ o3dapi.NEO.getBalance({
 {
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
-    assets: ['NKN']
+    assets: ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"]
   },
-  network: 'MainNet',
+  network: 'TestNet',
 }
 
 // output
 {
   AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru: [
     {
-      assetID: 'c36aee199dbba6c3f439983657558cfb67629599',
-      symbol: 'NKN',
+      assetID: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'GAS',
       amount: '0.00000233',
     }
   ],
@@ -311,7 +259,7 @@ o3dapi.NEO.getBalance({
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
   },
-  network: 'MainNet',
+  network: 'TestNet',
 }
 
 // output
@@ -328,8 +276,8 @@ o3dapi.NEO.getBalance({
       amount: '777.0001',
     },
     {
-      assetID: 'c36aee199dbba6c3f439983657558cfb67629599',
-      symbol: 'NKN',
+      assetID: '74f2dc36a68fdc4682034178eb2220729231db76',
+      symbol: 'CGAS',
       amount: '0.00000233',
     },
     {
@@ -352,10 +300,10 @@ o3dapi.NEO.getBalance({
     },
     {
       address: 'AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ',
-      asset: 'PHX',
+      asset: ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"],
     },
   ],
-  network: 'MainNet',
+  network: 'TestNet',
 }
 
 // output
@@ -372,8 +320,8 @@ o3dapi.NEO.getBalance({
       amount: '777.0001',
     },
     {
-      assetID: 'c36aee199dbba6c3f439983657558cfb67629599',
-      symbol: 'NKN',
+      assetID: '74f2dc36a68fdc4682034178eb2220729231db76',
+      symbol: 'CGAS',
       amount: '0.00000233',
     },
     {
@@ -384,8 +332,8 @@ o3dapi.NEO.getBalance({
   ],
   AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ: [
     {
-      assetID: '1578103c13e39df15d0d29826d957e85d770d8c9',
-      symbol: 'PHX',
+      assetID: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
+      symbol: 'GAS',
       amount: '11000',
     }
   ]
@@ -402,11 +350,11 @@ Allows the DAPP to query the balance of a user, this includes both native assets
 | network   | String                             | The call will only work for the networks available in the GetNetworks command            |
 
 #### Balance Request
-| Parameter  | Type     | Description                                                                   |
-|:---------- |:-------- |:----------------------------------------------------------------------------- |
-| address    | String   | The address whose balance you want to query                                   |
-| assets     | String[] | A list of contract hash (or symbold on MainNet only) to query the balance for |
-| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true          |
+| Parameter  | Type     | Description                                                                                  |
+|:---------- |:-------- |:-------------------------------------------------------------------------------------------- |
+| address    | String   | The address whose balance you want to query                                                  |
+| assets     | String[] | A list of contract hash (or symbold on TestNet only) to query the balance for                |
+| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true(Teemmo does not support)|
 
 ### Success Response
 | Parameter | Type              | Description                                                                          |
@@ -421,14 +369,14 @@ The amount of addresses is n where n is the number of addresses specified in you
 
 
 #### BalanceResponse
-| Parameter | Type    | Description                                                                                          |
-|:--------- |:------- |:---------------------------------------------------------------------------------------------------- |
-| assetID   | String  | ID of the given asset                                                                                |
-| symbol    | String  | Symbol of the given asset                                                                            |
-| amount    | String  | Double Value of the balance represented as a String                                                  |
-| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS |
+| Parameter | Type    | Description                                                                                                                   |
+|:--------- |:------- |:----------------------------------------------------------------------------------------------------------------------------- |
+| assetID   | String  | ID of the given asset                                                                                                         |
+| symbol    | String  | Symbol of the given asset                                                                                                     |
+| amount    | String  | Double Value of the balance represented as a String                                                                           |
+| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS(Teemmo does not support) |
 
-#### UTXO
+#### UTXO(Teemmo does not support)
 | Parameter      | Type   | Description                                                           |
 |:-------------- |:------ |:--------------------------------------------------------------------- |
 | asset          | String | Script hash of the native asset                                       |
@@ -441,7 +389,7 @@ The amount of addresses is n where n is the number of addresses specified in you
 ## getStorage
 
 ```typescript
-o3dapi.NEO.getStorage({
+Teemmo.NEO.getStorage({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   key: 'game.status',
   network: 'TestNet'
@@ -498,7 +446,7 @@ Returns the raw value located in contract storage
 ## invokeRead
 
 ```typescript
-o3dapi.NEO.invokeRead({
+Teemmo.NEO.invokeRead({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   operation: 'calculatorAdd',
   arguments: [
@@ -511,7 +459,7 @@ o3dapi.NEO.invokeRead({
       value: 10
     }
   ],
-  network: 'PrivNet'
+  network: 'TestNet'
 })
 .then((result: Object) => {
   console.log('Read invocation result: ' + JSON.stringigy(result));
@@ -555,7 +503,7 @@ Execute a contract invocation in read-only mode.
 | scriptHash | String     | The script hash of the contract you want to invoke a read on                   |
 | operation  | String     | The operation on the smart contract that you want to invoke a read on          |
 | args       | Argument[] | The input arguments necessary to perform this operation                        |
-| network    | String     | Network alias to submit this request to. If omitted, will default to "MainNet" |
+| network    | String     | Network alias to submit this request to. If omitted, will default to "TestNet" |
 
 #### Argument
 | Parameter | Type   | Description                                               |
@@ -584,26 +532,51 @@ The wallet will return the direct response from the RPC node.
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-
-## verifyMessage
+## invokeReadGroup
 
 ```typescript
-o3dapi.NEO.verifyMessage({
-  message: '058b9e03e7154e4db1e489c99256b7faHello World!',
-  data: '0147fb89d0999e9d8a90edacfa26152fe695ec8b3770dcad522048297ab903822e12472364e254ff2e088fc3ebb641cc24722c563ff679bb1d1623d08bd5863d0d',
-  publicKey: '0241392007396d6ef96159f047967c5a61f1af0871ecf9dc82afbedb68afbb949a',
+Teemmo.NEO.invokeReadGroup({
+  "group":[
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "totalSupply",
+          "arguments": [],
+          "network": "TestNet"
+      },
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "name",
+          "arguments": [],
+          "network": "TestNet"
+      },
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "symbol",
+          "arguments":[],
+          "network": "TestNet"
+      },
+      {
+          "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",
+          "operation": "decimals",
+          "arguments": [],
+          "network": "TestNet"
+      }
+  ]
 })
-.then(({result: bool}) => {
-  console.log('Signature data matches provided message and public key: ' + result);
+.then((result: Object) => {
+  console.log('Read invocation result: ' + JSON.stringigy(result));
 })
 .catch(({type: string, description: string, data: any}) => {
   switch(type) {
     case NO_PROVIDER:
       console.log('No provider available.');
       break;
-    case CONNECTION_DENIED:
-      console.log('The user rejected the request to connect with your dApp');
+    case CONNECTION_REFUSED:
+      console.log('Connection dApp not connected. Please call the "connect" function.');
       break;
+   case RPC_ERROR:
+    console.log('There was an error when broadcasting this transaction to the network.');
+    break;
   }
 });
 ```
@@ -612,29 +585,68 @@ o3dapi.NEO.verifyMessage({
 
 ```typescript
 {
-  result: true,
+  "script": '8h89fh398f42f.....89hf2894hf9834',
+  "state": "HALT, BREAK",
+  "gas_consumed": "0.648",
+  "stack": [
+    {
+      "type": "ByteArray",
+      "value": "00e8764817"
+    },
+    {
+      "type": "ByteArray",
+      "value": "4e454f204e616d6520437265646974"
+    },
+    {
+      "type": "ByteArray",
+      "value": "4e4e43"
+    },
+    {
+      "type": "Integer",
+      "value": "2"
+    }
+  ]
 }
 ```
 
-Returns whether the provided signature data matches the provided message and was signed by the account of the provided public key.
+Execute a contract invocation group in read-only mode.You can get multiple information in the contract at one time, such as getting all the basic information of NEP5 at one time.
 
-### Input Arguments
+### 输入参数
+| Parameter  | Type             | Description                                                                    |
+|:---------- |:-----------------|:------------------------------------------------------------------------------ |
+| group      | invokeRead[]     | An array of invokeRead input arguments                                         |
 
-| Parameter | Type   | Description                                            |
-|:--------- |:------ |:------------------------------------------------------ |
-| message   | String | The original signed message                            |
-| data      | String | The signature data                                     |
-| publicKey | String | The public key of the account used to sign the message |
+#### invokeRead
+| Parameter  | Type       | Description                                                                    |
+|:---------- |:---------- |:------------------------------------------------------------------------------ |
+| scriptHash | String     | The script hash of the contract you want to invoke a read on                   |
+| operation  | String     | The operation on the smart contract that you want to invoke a read on          |
+| args       | Argument[] | The input arguments necessary to perform this operation                        |
+| network    | String     | Network alias to submit this request to. If omitted, will default to "TestNet" |
 
-### Success Response
+#### Argument
+| Parameter | Type   | Description                                               |
+|:--------- |:------ |:--------------------------------------------------------- |
+| type      | String | The type of the argument with you are using               |
+| value     | String | String representation of the argument which you are using |
 
-| Parameter | Type    | Description                                                                |
-|:--------- |:------- |:-------------------------------------------------------------------------- |
-| result    | Boolean | Whether the provided signature matches the provided message and public key |
+<aside class =notice>
+Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
+</aside>
+
+### 成功的返回
+The wallet will return the direct response from the RPC node.
+
+| Parameter    | Type       | Description                                                                                   |
+|:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
+| script       | String     | The script which was run                                                                      |
+| state        | String     | Status of the executeion                                                                      |
+| gas_consumed | String     | Estimated amount of GAS to be used to execute the invocation. (Up to 10 free per transaction) |
+| stack        | Argument[] | An array of response arguments                                                                |
 
 ### Error Response
-| Parameter   | Type    | Description                                   |
-|:----------- |:------- |:--------------------------------------------- |
-| type        | String  | The type of error which has occurred          |
-| description | String  | A description of the error which has occurred |
-| data        | String? | Any raw data associated with the error        |
+| Parameter   | Type    | Description                                  |
+|:----------- |:------- |:-------------------------------------------- |
+| type        | String  | The type of error which has occured          |
+| description | String? | A description of the error which has occured |
+| data        | String? | Any raw data associated with the error       |

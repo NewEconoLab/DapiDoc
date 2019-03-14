@@ -2,7 +2,7 @@
 
 读方法不改变链数据. 它帮助你为你的用户查询信息, 也为你的Dapp提供必要的信息:
 
-## 获得提供者信息 getProvider
+## getProvider_获得提供者信息
 
 ```typescript
 Teemmo.NEO.getProvider()

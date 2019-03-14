@@ -350,11 +350,11 @@ Allows the DAPP to query the balance of a user, this includes both native assets
 | network   | String                             | The call will only work for the networks available in the GetNetworks command            |
 
 #### Balance Request
-| Parameter  | Type     | Description                                                                                  |
-|:---------- |:-------- |:-------------------------------------------------------------------------------------------- |
-| address    | String   | The address whose balance you want to query                                                  |
-| assets     | String[] | A list of contract hash (or symbold on TestNet only) to query the balance for                |
-| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true(Teemmo does not support)|
+| Parameter  | Type     | Description                                                                                   |
+|:---------- |:-------- |:--------------------------------------------------------------------------------------------  |
+| address    | String   | The address whose balance you want to query                                                   |
+| assets     | String[] | A list of contract hash (or symbold on TestNet only) to query the balance for                 |
+| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true(Teemmo Not yet supported)|
 
 ### Success Response
 | Parameter | Type              | Description                                                                          |
@@ -374,9 +374,9 @@ The amount of addresses is n where n is the number of addresses specified in you
 | assetID   | String  | ID of the given asset                                                                                                         |
 | symbol    | String  | Symbol of the given asset                                                                                                     |
 | amount    | String  | Double Value of the balance represented as a String                                                                           |
-| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS(Teemmo does not support) |
+| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS(Teemmo Not yet supported)|
 
-#### UTXO(Teemmo does not support)
+#### UTXO (Teemmo Not yet supported)
 | Parameter      | Type   | Description                                                           |
 |:-------------- |:------ |:--------------------------------------------------------------------- |
 | asset          | String | Script hash of the native asset                                       |

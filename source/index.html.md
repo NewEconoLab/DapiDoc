@@ -21,7 +21,7 @@ includes:
 search: true
 ---
 
-# Dapi简介
+# NEO Dapi简介
 
 NEO Dapi 是一种NEO环境中通用的Dapi标准，其由NEL与O3和其他NEO社区成员一同维护。
 

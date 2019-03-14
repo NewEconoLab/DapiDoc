@@ -82,20 +82,16 @@ Dapp应该注意，获取到txid只代表节点发送交易体成功，并不代
 ## Invoke 发送合约调用交易
 ```typescript
 Teemmo.NEO.invoke({
-  scriptHash: '505663a29d83663a838eee091249abd167e928f5',
-  operation: 'storeData',
-  arguments: [
-    {
-      type: 'string',
-      value: 'hello'
-    }
+  "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
+  "operation":"transfer",
+  "arguments":[
+      {"type":"Address","value":"AHDV7M54NHukq8f76QQtBTbrCqKJrBH9UF"},
+      {"type":"Address","value":"AbU7BUQHW9sa69pTac7pPR3cq4gQHYC1DH"},
+      {"type":"Integer","value":"100000"}
   ],
-  attachedAssets: {
-    NEO: '100',
-    GAS: '0.0001',
-  },
-  fee: '0.001',
-  network: 'TestNet',
+  "fee":"0.001",
+  "description":"NNC转账",
+  "network":"TestNet"
 })
 .then(({txid, nodeUrl}: InvokeOutput) => {
   console.log('Invoke transaction success!');
@@ -134,6 +130,7 @@ Teemmo.NEO.invoke({
 | scriptHash                  | String               | 所需调用合约的Hash                                                                                                    |
 | operation                   | String               | 所需调用合约的方法名. 可以从合约的ABI文件或者合约开发者的文档获得                                                         |
 | args                        | Argument[]           | 一个合约方法输入参数的数组                                                                                             |
+| description                 | String               | 对于此次操作的简要说明，该说明将会显示在钱包的确认页面帮助用户理解（说明暂时不会存储在链上）                                 |
 | fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
 | network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
 | attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要（Teemmo暂不支持）                                                                     |
@@ -187,3 +184,132 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 | type        | String  | 错误的类型                                    |
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
+
+## InvokeGroup 发送合约调用交易组
+```typescript
+Teemmo.NEO.invokeGroup({
+  "merge": true,
+  "group": [
+    {
+      "scriptHash": "74f2dc36a68fdc4682034178eb2220729231db76",
+      "operation": "transfer",
+      "arguments": [
+        {
+          "type": "Address",
+          "value": "AHDV7M54NHukq8f76QQtBTbrCqKJrBH9UF"
+        },
+        {
+          "type": "Address",
+          "value": "AbU7BUQHW9sa69pTac7pPR3cq4gQHYC1DH"
+        },
+        {
+          "type": "Integer",
+          "value": "100000"
+        }
+      ],
+      "description": "NNC转账",
+      "fee": "0",
+      "network": "TestNet"
+    },
+    {
+      "scriptHash": "00d00d0ac467a5b7b2ad04052de154bb9fe8c2ff",
+      "operation": "setmoneyin",
+      "arguments": [
+        {
+          "type": "Hook_Txid",
+          "value": 0
+        },
+        {
+          "type": "Hash160",
+          "value": "74f2dc36a68fdc4682034178eb2220729231db76"
+        }
+      ],
+      "description": "充值确认",
+      "fee": "0.001",
+      "network": "TestNet"
+    }
+  ]
+})
+.then(({txid, nodeUrl}: InvokeOutput) => {
+  console.log('Invoke transaction success!');
+  console.log('Transaction ID: ' + txid);
+  console.log('RPC node URL: ' + nodeUrl);
+})
+.catch(({type: string, description: string, data: any}) => {
+  switch(type) {
+    case NO_PROVIDER:
+      console.log('No provider available.');
+      break;
+    case RPC_ERROR:
+      console.log('There was an error when broadcasting this transaction to the network.');
+      break;
+    case CANCELED:
+      console.log('The user has canceled this transaction.');
+      break;
+  }
+});
+```
+
+> 返回示例
+
+```typescript
+//merge=true
+[
+  {
+    "txid": "0cba61b8779f3343ff39fbecee596395b06490bce7245412ee788c8620813b63",
+    "nodeUrl": "https://api.nel.group/api"
+  }
+]
+
+//merge=false
+[
+  {
+    "txid": "0x045e1612d2dd2edf29d6bb45657329bacc299072655691f9cc0f486fb649a30d",
+    "nodeUrl": "https://api.nel.group/api"
+  },
+  {
+    "txid": "4747e2b50cbd853c13b24e67d59225816f152a13ee281345751eb51bf811355c",
+    "nodeUrl": "https://api.nel.group/api"
+  }
+]
+```
+
+本方法构造合约调用交易组并发送，并且内涵两种模式：聚合模式和非聚合模式：
+
+聚合模式：钱包将输入的每个Invoke合约调用操作按照顺序统一构造进入 **一个单一的** 合约调用交易体，使得多个合约方法能够在一个交易中执行完成。该模式适合多个不同合约的小操作（耗费GAS少的）合并一个交易。聚合模式需要注意，是否聚合后会是的脚本执行超过10GAS。聚合模式下，交易的总的fee为各Invoke元素中fee之和。
+
+非聚合模式：钱包将输入的每个Inovke合约调用操作按照顺序构造为 **多个独立的** 合约调用交易体，只有前一个交易被确认已经共识（上链）才会发送下一个交易。该模式适合一系列关联的合约操作，按先后逻辑关系自动搭接执行。
+
+Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txid作为下一个交易的输入参数，同时支持聚合模式和非聚合模式。但是有以下限制：
+- Hook_Txid不能出现在第一个Invoke元素
+- Hook_Txid的value必须是0，意为只能取第一个交易的txid
+- 使用Hook_Txid时，在聚合模式下，最多只能定义两个Invoke元素
+
+### 输入参数
+| 参数名     | 类型     | 说明                                                      |
+|:--------- |:------   |:--------------------------------------------------------- |
+| merge     | Boolean  | 选择是否采用聚合模式                                        |
+| group     | Invoke[] | Invoke结构的数组                                           |
+
+### Invoke结构
+| 参数                        | 类型                  | 说明                                                                                                                 |
+|:--------------------------- |:-------------------- |:-------------------------------------------------------------------------------------------------------------------- |
+| scriptHash                  | String               | 所需调用合约的Hash                                                                                                    |
+| operation                   | String               | 所需调用合约的方法名. 可以从合约的ABI文件或者合约开发者的文档获得                                                         |
+| args                        | Argument[]           | 一个合约方法输入参数的数组                                                                                             |
+| description                 | String               | 对于此次操作的简要说明，该说明将会显示在钱包的确认页面帮助用户理解（说明暂时不会存储在链上）                                 |
+| fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
+| network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
+| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要（Teemmo暂不支持）                                                                     |
+| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemmo暂不支持）                                            |
+| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemmo暂不支持）                                                                          |
+
+#### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
+|:--------- |:------ |:--------------------------------------------------------- |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
+
+<aside class =notice>
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"|"Hook_Txid"
+</aside>

@@ -82,20 +82,16 @@ It is reccommended that the DAPP take appropriate levels of risk prevention when
 ## Invoke_EN
 ```typescript
 Teemmo.NEO.invoke({
-  scriptHash: '505663a29d83663a838eee091249abd167e928f5',
-  operation: 'storeData',
-  arguments: [
-    {
-      type: 'string',
-      value: 'hello'
-    }
+  "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
+  "operation":"transfer",
+  "arguments":[
+      {"type":"Address","value":"AHDV7M54NHukq8f76QQtBTbrCqKJrBH9UF"},
+      {"type":"Address","value":"AbU7BUQHW9sa69pTac7pPR3cq4gQHYC1DH"},
+      {"type":"Integer","value":"100000"}
   ],
-  attachedAssets: {
-    NEO: '100',
-    GAS: '0.0001',
-  },
-  fee: '0.001',
-  network: 'TestNet',
+  "fee":"0.001",
+  "description":"NNC transfer",
+  "network":"TestNet"
 })
 .then(({txid, nodeUrl}: InvokeOutput) => {
   console.log('Invoke transaction success!');
@@ -134,6 +130,7 @@ Invoke allows for the generic execution of smart contracts on behalf of the user
 | scriptHash                  | String               | The script hash of the contract that you wish to invoke                                                                                            |
 | operation                   | String               | The operation on the smart contract that you wish to call. This can be fetched from the contract ABI                                               |
 | args                        | Argument[]           | A list of arguments necessary to perform on the operation you wish to call                                                                         |
+| description                 | String               | For a brief description of the operation, the description will be displayed on the confirmation page of the wallet to help the user understand (the description will not be stored on the Blockchain) |
 | fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
 | network                     | String               | Network alias to submit this request to.                                                                                                           |
 | attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale(Teemmo Not yet supported)                                   |

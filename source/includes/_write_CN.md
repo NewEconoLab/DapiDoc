@@ -85,9 +85,18 @@ Teemmo.NEO.invoke({
   "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
   "operation":"transfer",
   "arguments":[
-      {"type":"Address","value":"AHDV7M54NHukq8f76QQtBTbrCqKJrBH9UF"},
-      {"type":"Address","value":"AbU7BUQHW9sa69pTac7pPR3cq4gQHYC1DH"},
-      {"type":"Integer","value":"100000"}
+      {
+        "type":"Address",
+        "value":"AHDV7M54NHukq8f76QQtBTbrCqKJrBH9UF"
+      },
+      {
+        "type":"Address",
+        "value":"AbU7BUQHW9sa69pTac7pPR3cq4gQHYC1DH"
+      },
+      {
+        "type":"Integer",
+        "value":"100000"
+      }
   ],
   "fee":"0.001",
   "description":"NNC转账",
@@ -176,7 +185,7 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 | 参数      | 类型    | 说明                                                                          |
 |:--------- |:------ |:----------------------------------------------------------------------------- |
 | txid      | String | 发送的交易体的hash                                                             |
-| nodeURL   | String | 发送交易体的NEO节点的URL地址 
+| nodeURL   | String | 发送交易体的NEO节点的URL地址                                                    |
 
 ### 失败的返回
 | 参数名       | 类型    | 说明                                         |
@@ -291,7 +300,7 @@ Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txi
 | merge     | Boolean  | 选择是否采用聚合模式                                        |
 | group     | Invoke[] | Invoke结构的数组                                           |
 
-### Invoke结构
+#### Invoke结构
 | 参数                        | 类型                  | 说明                                                                                                                 |
 |:--------------------------- |:-------------------- |:-------------------------------------------------------------------------------------------------------------------- |
 | scriptHash                  | String               | 所需调用合约的Hash                                                                                                    |
@@ -304,7 +313,7 @@ Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txi
 | assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemmo暂不支持）                                            |
 | triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemmo暂不支持）                                                                          |
 
-#### Argument参数结构
+##### Argument参数结构
 | 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
 | type      | String | 合约参数的类型                                             |
@@ -313,3 +322,21 @@ Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txi
 <aside class =notice>
 type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"|"Hook_Txid"
 </aside>
+
+### 成功的返回
+| 参数      | 类型    | 说明                                                                          |
+|:--------- |:------ |:----------------------------------------------------------------------------- |
+| []        | Array   | invoke返回结构的数组                                                             |
+
+#### invoke返回结构
+| 参数      | 类型    | 说明                                                                          |
+|:--------- |:------ |:----------------------------------------------------------------------------- |
+| txid      | String | 发送的交易体的hash                                                             |
+| nodeURL   | String | 发送交易体的NEO节点的URL地址                                                    |
+
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
+|:----------- |:------- |:-------------------------------------------- |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |

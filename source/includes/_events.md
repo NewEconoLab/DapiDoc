@@ -6,7 +6,7 @@ Events are a way for the wallet to asynchronously with the DAPP when certain cha
 On a READY event, the callback will fire with a single argument with information about the wallet provider. At any time a READY event listener is added, it will immidiately be called if the provider is already in a ready state. This provides a single flow for dapp developers since this listener should start any and all interactions with the dapi protocol.
 
 ### Full event name
-Teemmo.NEO.READY
+Teemo.NEO.READY
 
 ### Event data
 | Parameter     | Type     | Description                                                      |
@@ -26,7 +26,7 @@ Teemmo.NEO.READY
 On a ACCOUNT_CHANGED event, the callback will fire with a single argument of the new account. This occurs when an account is already connected to the dapp, and the user has changed the connected account from the dapi provider side.
 
 ### Full event name
-Teemmo.NEO.ACCOUNT_CHANGED
+Teemo.NEO.ACCOUNT_CHANGED
 
 ### Event data
 | Parameter | Type   | Description                                        |
@@ -40,7 +40,7 @@ Teemmo.NEO.ACCOUNT_CHANGED
 On a CONNECTED event, the user has approved the connection of the dapp with one of their accounts. This will fire the first time any of one of the following methods are called from the dapp: `getAccount`, `invoke`, `send`.
 
 ### Full event name
-Teemmo.NEO.CONNECTED
+Teemo.NEO.CONNECTED
 
 ### Event data
 | Parameter | Type   | Description                                        |
@@ -54,14 +54,14 @@ Teemmo.NEO.CONNECTED
 On a DISCONNECTED event, the account connected to the dapp via the dapi provider has been disconnected (logged out).
 
 ### Full event name
-Teemmo.NEO.DISCONNECTED
+Teemo.NEO.DISCONNECTED
 
 ## NETWORK_CHANGED_EN
 
 On a NETWORK_CHANGED event, the user has changed the network their provider wallet is connected to. The event will return the updated network details.
 
 ### Full event name
-Teemmo.NEO.NETWORK_CHANGED
+Teemo.NEO.NETWORK_CHANGED
 
 ### Event data
 | Parameter      | Type     | Description                                                        |
@@ -74,8 +74,8 @@ Teemmo.NEO.NETWORK_CHANGED
 ### addEventListener
 
 ```typescript
-window.addEventListener('Teemmo.NEO.READY',(data:CustomEvent)=>{
-    console.log("Teemmo READY ");
+window.addEventListener('Teemo.NEO.READY',(data:CustomEvent)=>{
+    console.log("Teemo READY ");
     console.log(JSON.stringify(data.detail))
 
     const main = new Main();

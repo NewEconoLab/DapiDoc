@@ -5,7 +5,7 @@ Read methods do not alter the state of the blockchain. It can help you query inf
 ## getProvider_EN
 
 ```typescript
-Teemmo.NEO.getProvider()
+Teemo.NEO.getProvider()
 .then((provider: Provider) => {
   const {
     name,
@@ -43,7 +43,7 @@ Teemmo.NEO.getProvider()
 
 ```typescript
 {
-  "name": "TeemmoWallet",
+  "name": "TeemoWallet",
   "version": "0.1",
   "website": "nel.group",
   "compatibility": [
@@ -146,7 +146,7 @@ None
 ## getAccount_EN
 
 ```typescript
-Teemmo.NEO.getAccount()
+Teemo.NEO.getAccount()
 .then((account: Account) => {
   const {
     address,
@@ -195,7 +195,7 @@ Return the Account that is currently connected to the dApp.
 ## getBalance_EN
 
 ```typescript
-Teemmo.NEO.getBalance({
+Teemo.NEO.getBalance({
   params:{  
     "address": "ASBhJFN3XiDu38EdEQyMY3N2XwGh1gd5WW",  
     "assets": ["74f2dc36a68fdc4682034178eb2220729231db76"]
@@ -354,7 +354,7 @@ Allows the DAPP to query the balance of a user, this includes both native assets
 |:---------- |:-------- |:--------------------------------------------------------------------------------------------  |
 | address    | String   | The address whose balance you want to query                                                   |
 | assets     | String[] | A list of contract hash (or symbold on TestNet only) to query the balance for                 |
-| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true(Teemmo Not yet supported)|
+| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true(Teemo Not yet supported)|
 
 ### Success Response
 | Parameter | Type              | Description                                                                          |
@@ -374,9 +374,9 @@ The amount of addresses is n where n is the number of addresses specified in you
 | assetID   | String  | ID of the given asset                                                                                                         |
 | symbol    | String  | Symbol of the given asset                                                                                                     |
 | amount    | String  | Double Value of the balance represented as a String                                                                           |
-| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS(Teemmo Not yet supported)|
+| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS(Teemo Not yet supported)|
 
-#### UTXO (Teemmo Not yet supported)
+#### UTXO (Teemo Not yet supported)
 | Parameter      | Type   | Description                                                           |
 |:-------------- |:------ |:--------------------------------------------------------------------- |
 | asset          | String | Script hash of the native asset                                       |
@@ -388,7 +388,7 @@ The amount of addresses is n where n is the number of addresses specified in you
 ## getStorage_EN
 
 ```typescript
-Teemmo.NEO.getStorage({
+Teemo.NEO.getStorage({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   key: 'game.status',
   network: 'TestNet'
@@ -445,7 +445,7 @@ Returns the raw value located in contract storage
 ## invokeRead_EN
 
 ```typescript
-Teemmo.NEO.invokeRead({
+Teemo.NEO.invokeRead({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   operation: 'calculatorAdd',
   arguments: [
@@ -534,7 +534,7 @@ The wallet will return the direct response from the RPC node.
 ## invokeReadGroup_EN
 
 ```typescript
-Teemmo.NEO.invokeReadGroup({
+Teemo.NEO.invokeReadGroup({
   "group":[
       {
           "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",

@@ -5,7 +5,7 @@
 ## send 发送转账交易
 
 ```typescript
-Teemmo.NEO.send({
+Teemo.NEO.send({
   fromAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   toAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   asset: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
@@ -81,7 +81,7 @@ Dapp应该注意，获取到txid只代表节点发送交易体成功，并不代
 
 ## Invoke 发送合约调用交易
 ```typescript
-Teemmo.NEO.invoke({
+Teemo.NEO.invoke({
   "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
   "operation":"transfer",
   "arguments":[
@@ -143,8 +143,8 @@ Teemmo.NEO.invoke({
 | fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
 | network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
 | attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要                                                                                      |
-| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemmo暂不支持）                                            |
-| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemmo暂不支持）                                                                          |
+| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemo暂不支持）                                            |
+| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemo暂不支持）                                                                          |
 
 #### Argument参数结构
 | 参数名     | 类型   | 说明                                                       |
@@ -162,19 +162,19 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 | NEO       | String? | 附加NEO的数量                                           |
 | GAS       | String? | 附加GAS的数量                                           |
 
-#### AssetIntentOverrides 附加资产UTXO覆盖 （Teemmo暂不支持）
+#### AssetIntentOverrides 附加资产UTXO覆盖 （Teemo暂不支持）
 | 参数名     | 类型          | 说明                                               |
 |:--------- |:------------- |:-------------------------------------------------- |
 | inputs    | AssetInput[]  | 一个 UTXO inputs 的数组                             |
 | outputs   | AssetOutput[] | 一个 UTXO outputs 的数组                            |
 
-#### AssetInput 附加资产UTXO输入 （Teemmo暂不支持）
+#### AssetInput 附加资产UTXO输入 （Teemo暂不支持）
 | 参数名     | 类型   | 说明                                                      |
 |:--------- |:------ |:-------------------------------------------------------- |
 | txid      | String | 交易的ID将被作为UTXO的输入使用                             |
 | index     | String | Index of the UTXO, can be found from transaction details |
 
-#### AssetOutput 附加资产UTXO输出 （Teemmo暂不支持）
+#### AssetOutput 附加资产UTXO输出 （Teemo暂不支持）
 | 参数名     | 类型   | 说明                                                                  |
 |:--------- |:------ |:--------------------------------------------------------------------- |
 | asset     | String | 资产ID                                                                |
@@ -196,7 +196,7 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 
 ## InvokeGroup 发送合约调用交易组
 ```typescript
-Teemmo.NEO.invokeGroup({
+Teemo.NEO.invokeGroup({
   "merge": true,
   "group": [
     {
@@ -311,8 +311,8 @@ Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txi
 | fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
 | network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
 | attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要                                                                                      |
-| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemmo暂不支持）                                            |
-| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemmo暂不支持）                                                                          |
+| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemo暂不支持）                                            |
+| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemo暂不支持）                                                                          |
 
 ##### Argument参数结构
 | 参数名     | 类型   | 说明                                                       |

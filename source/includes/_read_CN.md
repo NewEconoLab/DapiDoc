@@ -5,7 +5,7 @@
 ## getProvider_获得提供者信息
 
 ```typescript
-Teemmo.NEO.getProvider()
+Teemo.NEO.getProvider()
 .then((provider: Provider) => {
   const {
     name,
@@ -43,7 +43,7 @@ Teemmo.NEO.getProvider()
 
 ```typescript
 {
-  "name": "TeemmoWallet",
+  "name": "TeemoWallet",
   "version": "0.1",
   "website": "nel.group",
   "compatibility": [
@@ -146,7 +146,7 @@ dapi.NEO.getNetworks()
 ## getAccount_获取账户信息
 
 ```typescript
-Teemmo.NEO.getAccount()
+Teemo.NEO.getAccount()
 .then((account: Account) => {
   const {
     address,
@@ -195,7 +195,7 @@ Teemmo.NEO.getAccount()
 ## getBalance_获取资产余额
 
 ```typescript
-Teemmo.NEO.getBalance({
+Teemo.NEO.getBalance({
   params: {  
     "address": "ASBhJFN3XiDu38EdEQyMY3N2XwGh1gd5WW",  
     "assets": ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"]
@@ -354,7 +354,7 @@ Teemmo.NEO.getBalance({
 |:---------- |:-------- |:----------------------------------------------------------------------------- |
 | address    | String   | 希望获取余额的地址                                                              |
 | assets     | String[] | 一个资产ID或一个资产ID组                                                        |
-| fetchUTXO? | boolean  | 这是一个可选的参数，表示是否需要返回UTXO（Teemmo暂时不支持）          |
+| fetchUTXO? | boolean  | 这是一个可选的参数，表示是否需要返回UTXO（Teemo暂时不支持）          |
 
 ### 成功的返回
 | 参数       | 类型              | 说明                                                                                 |
@@ -374,7 +374,7 @@ address_1等表示真实地址的指代
 | assetID   | String  | 资产ID                                                                                                |
 | symbol    | String  | 资产的单位名称                                                                                         |
 | amount    | String  | 资产的余额                                                                                            |
-| unspent   | UTXO[]? | 未使用的UTXO（如果入参fetchUTXO为true）（Teemmo暂时不支持）                                             |
+| unspent   | UTXO[]? | 未使用的UTXO（如果入参fetchUTXO为true）（Teemo暂时不支持）                                             |
 
 #### UTXO结构
 | 参数           | 类型    | 说明                                                                  |
@@ -389,7 +389,7 @@ address_1等表示真实地址的指代
 ## getStorage_获取存储区值
 
 ```typescript
-Teemmo.NEO.getStorage({
+Teemo.NEO.getStorage({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   key: 'game.status',
   network: 'TestNet'
@@ -446,7 +446,7 @@ Teemmo.NEO.getStorage({
 ## invokeRead_只读模拟执行合约调用
 
 ```typescript
-Teemmo.NEO.invokeRead({
+Teemo.NEO.invokeRead({
   scriptHash: '505663a29d83663a838eee091249abd167e928f5',
   operation: 'calculatorAdd',
   arguments: [
@@ -535,7 +535,7 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 ## invokeReadGroup_只读模拟执行合约调用组
 
 ```typescript
-Teemmo.NEO.invokeReadGroup({
+Teemo.NEO.invokeReadGroup({
   "group":[
       {
           "scriptHash": "fc732edee1efdf968c23c20a9628eaa5a6ccb934",

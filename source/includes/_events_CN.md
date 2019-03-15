@@ -6,7 +6,7 @@
 当钱包的通信js注入Dapp页面完成，页面就会收到“准备完成事件”。钱包的所有方法，都应该在这个事件发生后开始调用。收到此事件同时，会获得一个getProvider方法的返回数据。
 
 ### 完整事件名
-Teemmo.NEO.READY
+Teemo.NEO.READY
 
 ### 事件数据
 | 参数名         | 类型     | 说明                                                             |
@@ -27,7 +27,7 @@ Teemmo.NEO.READY
 当钱包的使用者，在钱包管理界面中更换地址时，会触发此事件。收到此事件同时，会获得一个getAccount方法的返回数据。
 
 ### 完整事件名
-Teemmo.NEO.ACCOUNT_CHANGED
+Teemo.NEO.ACCOUNT_CHANGED
 
 ### 事件数据
 | 参数名     | 类型   | 说明                                                                |
@@ -43,7 +43,7 @@ Dapp在首次请求钱包的任何方法前，都需要用户确认是否同意�
 另一种情况，如果钱包从非登录（锁定）状态变为登录（解锁）状态，Dapp也将收到此事件。
 
 ### 完整事件名
-Teemmo.NEO.CONNECTED
+Teemo.NEO.CONNECTED
 
 ### 事件数据
 | Parameter | Type   | Description                                        |
@@ -57,14 +57,14 @@ Teemmo.NEO.CONNECTED
 当钱包和Dapp断开连接时会收到此事件，例如退出登录操作会触发这一事件。这个事件没有附带数据。
 
 ### 完整事件名
-Teemmo.NEO.DISCONNECTED
+Teemo.NEO.DISCONNECTED
 
 ## NETWORK_CHANGED 网络变更事件
 
 当钱包的使用者，在钱包管理界面中更换网络时，会触发此事件。收到此事件同时，会获得一个getNetworks方法的返回数据。
 
 ### 完整事件名
-Teemmo.NEO.NETWORK_CHANGED
+Teemo.NEO.NETWORK_CHANGED
 
 ### 事件数据
 | 参数名         | 类型      | 说明                                                                |
@@ -77,8 +77,8 @@ Teemmo.NEO.NETWORK_CHANGED
 ### 捕获事件
 
 ```typescript
-window.addEventListener('Teemmo.NEO.READY',(data:CustomEvent)=>{
-    console.log("Teemmo READY ");
+window.addEventListener('Teemo.NEO.READY',(data:CustomEvent)=>{
+    console.log("Teemo READY ");
     console.log(JSON.stringify(data.detail))
 
     const main = new Main();

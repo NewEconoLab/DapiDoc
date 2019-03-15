@@ -5,7 +5,7 @@ Write methods will alter the state on the blockchain, and require a user signatu
 ## send_EN
 
 ```typescript
-Teemmo.NEO.send({
+Teemo.NEO.send({
   fromAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   toAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   asset: 'GAS',
@@ -81,7 +81,7 @@ It is reccommended that the DAPP take appropriate levels of risk prevention when
 
 ## Invoke_EN
 ```typescript
-Teemmo.NEO.invoke({
+Teemo.NEO.invoke({
   "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
   "operation":"transfer",
   "arguments":[
@@ -143,8 +143,8 @@ Invoke allows for the generic execution of smart contracts on behalf of the user
 | fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
 | network                     | String               | Network alias to submit this request to.                                                                                                           |
 | attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale                                   |
-| assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemmo Not yet supported)                            |
-| triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemmo Not yet supported)                                                                                      |
+| assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemo Not yet supported)                            |
+| triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemo Not yet supported)                                                                                      |
 
 #### Argument
 | Parameter | Type   | Description                                               |
@@ -162,19 +162,19 @@ Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"
 | NEO       | String? | The amount of NEO to attach to the contract invocation |
 | GAS       | String? | The amount of GAS to attach to the contract invocation |
 
-#### AssetIntentOverrides(Teemmo Not yet supported)
+#### AssetIntentOverrides(Teemo Not yet supported)
 | Parameter | Type          | Description                                        |
 |:--------- |:------------- |:-------------------------------------------------- |
 | inputs    | AssetInput[]  | A list of UTXO inputs to use for this transaction  |
 | outputs   | AssetOutput[] | A list of UTXO outputs to use for this transaction |
 
-#### AssetInput(Teemmo Not yet supported)
+#### AssetInput(Teemo Not yet supported)
 | Parameter | Type   | Description                                              |
 |:--------- |:------ |:-------------------------------------------------------- |
 | txid      | String | Transaction id to be used as input                       |
 | index     | String | Index of the UTXO, can be found from transaction details |
 
-#### AssetOutput(Teemmo Not yet supported)
+#### AssetOutput(Teemo Not yet supported)
 | Parameter | Type   | Description                                                           |
 |:--------- |:------ |:--------------------------------------------------------------------- |
 | asset     | String | asset ID                                                              |
@@ -196,7 +196,7 @@ Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"
 
 ## InvokeGroup_EN
 ```typescript
-Teemmo.NEO.invokeGroup({
+Teemo.NEO.invokeGroup({
   "merge": true,
   "group": [
     {
@@ -311,8 +311,8 @@ Hook_Txid: This type is specific to the InvokeGroup method, which means that the
 | fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
 | network                     | String               | Network alias to submit this request to.                                                                                                           |
 | attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale                                   |
-| assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemmo Not yet supported)                            |
-| triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemmo Not yet supported)                                                                                      |
+| assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemo Not yet supported)                            |
+| triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemo Not yet supported)                                                                                      |
 
 ##### Argument
 | Parameter | Type   | Description                                               |

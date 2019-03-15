@@ -19,7 +19,7 @@ includes:
   - _errors.md
 
 
-search: false
+search: true
 ---
 
 # NEO Dapi简介

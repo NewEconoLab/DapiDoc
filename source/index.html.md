@@ -12,6 +12,7 @@ includes:
   - _write_CN.md
   - _events_CN.md
   - _errors_CN.md
+  - _intro.md
   - _read.md
   - _write.md
   - _events.md

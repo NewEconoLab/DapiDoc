@@ -35,7 +35,7 @@ Teemmo.NEO.ACCOUNT_CHANGED
 | label     | String | A label the users has set to identify their wallet |
 
 
-## CONNECTED
+## CONNECTED_EN
 
 On a CONNECTED event, the user has approved the connection of the dapp with one of their accounts. This will fire the first time any of one of the following methods are called from the dapp: `getAccount`, `invoke`, `send`.
 
@@ -49,14 +49,14 @@ Teemmo.NEO.CONNECTED
 | label     | String | A label the users has set to identify their wallet |
 
 
-## DISCONNECTED
+## DISCONNECTED_EN
 
 On a DISCONNECTED event, the account connected to the dapp via the dapi provider has been disconnected (logged out).
 
 ### Full event name
 Teemmo.NEO.DISCONNECTED
 
-## NETWORK_CHANGED
+## NETWORK_CHANGED_EN
 
 On a NETWORK_CHANGED event, the user has changed the network their provider wallet is connected to. The event will return the updated network details.
 

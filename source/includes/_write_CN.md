@@ -142,7 +142,7 @@ Teemmo.NEO.invoke({
 | description                 | String               | 对于此次操作的简要说明，该说明将会显示在钱包的确认页面帮助用户理解（说明暂时不会存储在链上）                                 |
 | fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
 | network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
-| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要（Teemmo暂不支持）                                                                     |
+| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要                                                                                      |
 | assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemmo暂不支持）                                            |
 | triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemmo暂不支持）                                                                          |
 
@@ -156,7 +156,7 @@ Teemmo.NEO.invoke({
 type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
 </aside>
 
-#### AttachedAssets 附加资产 （Teemmo暂不支持）
+#### AttachedAssets 附加资产
 | 参数名     | 类型    | 说明                                                   |
 |:--------- |:------- |:------------------------------------------------------ |
 | NEO       | String? | 附加NEO的数量                                           |
@@ -310,7 +310,7 @@ Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txi
 | description                 | String               | 对于此次操作的简要说明，该说明将会显示在钱包的确认页面帮助用户理解（说明暂时不会存储在链上）                                 |
 | fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
 | network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
-| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要（Teemmo暂不支持）                                                                     |
+| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要                                                                                      |
 | assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemmo暂不支持）                                            |
 | triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemmo暂不支持）                                                                          |
 
@@ -323,6 +323,12 @@ Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txi
 <aside class =notice>
 type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"|"Hook_Txid"
 </aside>
+
+#### AttachedAssets 附加资产
+| 参数名     | 类型    | 说明                                                   |
+|:--------- |:------- |:------------------------------------------------------ |
+| NEO       | String? | 附加NEO的数量                                           |
+| GAS       | String? | 附加GAS的数量                                           |
 
 ### 成功的返回
 | 参数      | 类型    | 说明                                                                          |

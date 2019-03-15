@@ -142,7 +142,7 @@ Invoke allows for the generic execution of smart contracts on behalf of the user
 | description                 | String               | For a brief description of the operation, the description will be displayed on the confirmation page of the wallet to help the user understand (the description will not be stored on the Blockchain) |
 | fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
 | network                     | String               | Network alias to submit this request to.                                                                                                           |
-| attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale(Teemmo Not yet supported)                                   |
+| attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale                                   |
 | assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemmo Not yet supported)                            |
 | triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemmo Not yet supported)                                                                                      |
 
@@ -156,7 +156,7 @@ Invoke allows for the generic execution of smart contracts on behalf of the user
 Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
 </aside>
 
-#### AttachedAssets(Teemmo Not yet supported)
+#### AttachedAssets
 | Parameter | Type    | Description                                            |
 |:--------- |:------- |:------------------------------------------------------ |
 | NEO       | String? | The amount of NEO to attach to the contract invocation |
@@ -310,7 +310,7 @@ Hook_Txid: This type is specific to the InvokeGroup method, which means that the
 | description                 | String               | For a brief description of the operation, the description will be displayed on the confirmation page of the wallet to help the user understand (the description will not be stored on the Blockchain) |
 | fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
 | network                     | String               | Network alias to submit this request to.                                                                                                           |
-| attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale(Teemmo Not yet supported)                                   |
+| attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale                                   |
 | assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemmo Not yet supported)                            |
 | triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemmo Not yet supported)                                                                                      |
 
@@ -323,6 +323,12 @@ Hook_Txid: This type is specific to the InvokeGroup method, which means that the
 <aside class =notice>
 Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"|"Hook_Txid"
 </aside>
+
+#### AttachedAssets
+| Parameter | Type    | Description                                            |
+|:--------- |:------- |:------------------------------------------------------ |
+| NEO       | String? | The amount of NEO to attach to the contract invocation |
+| GAS       | String? | The amount of GAS to attach to the contract invocation |
 
 ### Success Response
 | Parameter | Type   | Description                                                                   |

@@ -290,9 +290,10 @@ Teemmo.NEO.invokeGroup({
 非聚合模式：钱包将输入的每个Inovke合约调用操作按照顺序构造为 **多个独立的** 合约调用交易体，只有前一个交易被确认已经共识（上链）才会发送下一个交易。该模式适合一系列关联的合约操作，按先后逻辑关系自动搭接执行。
 
 Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txid作为下一个交易的输入参数，同时支持聚合模式和非聚合模式。但是有以下限制：
-- Hook_Txid不能出现在第一个Invoke元素
-- Hook_Txid的value必须是0，意为只能取第一个交易的txid
-- 使用Hook_Txid时，在聚合模式下，最多只能定义两个Invoke元素
+
+1. Hook_Txid不能出现在第一个Invoke元素
+2. Hook_Txid的value必须是0，意为只能取第一个交易的txid
+3. 使用Hook_Txid时，在聚合模式下，最多只能定义两个Invoke元素
 
 ### 输入参数
 | 参数名     | 类型     | 说明                                                      |

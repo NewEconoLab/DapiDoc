@@ -290,9 +290,10 @@ Merge mode: The wallet will construct each Invoke contract call operation to be 
 Non-merge mode: The wallet will construct each Inovke contract call operation to be entered in order as **multiple independent** contract invoke transaction bodies. Only after the previous transaction is confirmed as consensus (confirmed on the blockchain), the next transaction will be sent. This mode is suitable for a series of associated contract operations, and is automatically lined up and executed in a logical relationship.
 
 Hook_Txid: This type is specific to the InvokeGroup method, which means that the txid of the previous transaction is used as the input parameter of the next transaction, and both the merge mode and the non-merge mode are supported. However, there are the following restrictions:
-- Hook_Txid cannot appear in the first Invoke element
-- The value of Hook_Txid must be 0, meaning that only the txid of the first transaction can be taken.
-- When using Hook_Txid, you can only define up to two Invoke elements in the merge mode.
+
+1. Hook_Txid cannot appear in the first Invoke element
+2. The value of Hook_Txid must be 0, meaning that only the txid of the first transaction can be taken.
+3. When using Hook_Txid, you can only define up to two Invoke elements in the merge mode.
 
 ### Input arguments
 | Parameter | Type     | Description                                               |

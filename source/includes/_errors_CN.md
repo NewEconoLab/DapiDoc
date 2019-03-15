@@ -2,11 +2,11 @@
 
 这里我们定义了一些常见错误，提示Dapp改正方向
 
-| Error Type         | Meaning                                                                     |
+| 错误类型            | 定义                                                                        |
 | ------------------ | --------------------------------------------------------------------------- |
-| NO_PROVIDER        | Could not find an instance of the dAPI in the webpage                       |
-| CONNECTION_DENIED  | The dAPI provider refused to process this request                           |
-| RPC_ERROR          | An RPC error occured when submitting the request                            |
-| MALFORMED_INPUT    | An input such as the address is not a valid NEO address                     |
-| CANCELED           | The user cancels, or refuses the dapps request                              |
-| INSUFFICIENT_FUNDS | The user does not have a sufficient balance to perform the requested action |
+| NO_PROVIDER        | 无法找到dAPI的实例（钱包未安装）                                               |
+| CONNECTION_DENIED  | dAPI提供程序拒绝处理此请求                                                    |
+| RPC_ERROR          | 提交请求时发生RPC错误（CLI节点错误）                                           |
+| MALFORMED_INPUT    | 诸如地址之类的输入不是有效的NEO地址                                            |
+| CANCELED           | 用户取消或拒绝dapps请求                                                       |
+| INSUFFICIENT_FUNDS | 用户没有足够的余额来执行请求的操作                                             |

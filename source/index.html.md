@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 #  - typescript
 
 toc_footers:
+  - <a href='https://dapi.nel.group/en/'>Browse the English version</a>
   - <a href='https://nel.group/'>NewEconoLabs NEL</a>
 
 includes:

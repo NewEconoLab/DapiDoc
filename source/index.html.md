@@ -25,7 +25,7 @@ NEO Dapi 是一种NEO环境中通用的Dapi标准，其由NEL与O3和其他NEO�
 
 我们力求Dapi在总体上是一致且互相兼容的，但是每个Dapi提供者（程序）会根据其自身特性稍有不同。
 
-这里我们将提供开发者Dapi调用方法（部分会比较侧重NEL的Teemo Chrome 插件钱包）。
+这里我们将提供开发者Dapi调用方法（部分会比较侧重NEL的Teemo Chrome 插件钱包）
 
 # Teemo 插件钱包
 

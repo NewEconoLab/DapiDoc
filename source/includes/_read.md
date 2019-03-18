@@ -2,7 +2,7 @@
 
 Read methods do not alter the state of the blockchain. It can help you query information about your user, and provide you with relevant information:
 
-## getProvider_EN
+## getProvider
 
 ```typescript
 Teemo.NEO.getProvider()
@@ -85,7 +85,7 @@ None
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## getNetworks_EN
+## getNetworks
 
 ```typescript
 dapi.NEO.getNetworks()
@@ -143,7 +143,7 @@ None
 | data        | String? | Any raw data associated with the error       |
 
 
-## getAccount_EN
+## getAccount
 
 ```typescript
 Teemo.NEO.getAccount()
@@ -192,7 +192,7 @@ Return the Account that is currently connected to the dApp.
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## getBalance_EN
+## getBalance
 
 ```typescript
 Teemo.NEO.getBalance({
@@ -385,7 +385,7 @@ The amount of addresses is n where n is the number of addresses specified in you
 | txid           | String | The transaction id of this UTXO                                       |
 | value          | String | The double value of this UTXO represented as a String                 |
 
-## getStorage_EN
+## getStorage
 
 ```typescript
 Teemo.NEO.getStorage({
@@ -442,7 +442,7 @@ Returns the raw value located in contract storage
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## invokeRead_EN
+## invokeRead
 
 ```typescript
 Teemo.NEO.invokeRead({
@@ -531,7 +531,7 @@ The wallet will return the direct response from the RPC node.
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## invokeReadGroup_EN
+## invokeReadGroup
 
 ```typescript
 Teemo.NEO.invokeReadGroup({

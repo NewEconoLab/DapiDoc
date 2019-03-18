@@ -2,7 +2,7 @@
 
 Write methods will alter the state on the blockchain, and require a user signature.
 
-## send_EN
+## send
 
 ```typescript
 Teemo.NEO.send({
@@ -79,7 +79,7 @@ It is reccommended that the DAPP take appropriate levels of risk prevention when
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## Invoke_EN
+## Invoke
 ```typescript
 Teemo.NEO.invoke({
   "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
@@ -194,7 +194,7 @@ Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## InvokeGroup_EN
+## InvokeGroup
 ```typescript
 Teemo.NEO.invokeGroup({
   "merge": true,

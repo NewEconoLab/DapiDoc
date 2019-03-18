@@ -2,7 +2,7 @@
 Events are a way for the wallet to asynchronously with the DAPP when certain changes occur to the state of the wallet that might be relevant for the
 
 
-## READY_EN
+## READY
 On a READY event, the callback will fire with a single argument with information about the wallet provider. At any time a READY event listener is added, it will immidiately be called if the provider is already in a ready state. This provides a single flow for dapp developers since this listener should start any and all interactions with the dapi protocol.
 
 ### Full event name
@@ -22,7 +22,7 @@ Teemo.NEO.READY
 | --------- | ------ | ------------------------ |
 | theme     | string | UI theme of the provider |
 
-## ACCOUNT_CHANGED_EN
+## ACCOUNT_CHANGED
 On a ACCOUNT_CHANGED event, the callback will fire with a single argument of the new account. This occurs when an account is already connected to the dapp, and the user has changed the connected account from the dapi provider side.
 
 ### Full event name
@@ -35,7 +35,7 @@ Teemo.NEO.ACCOUNT_CHANGED
 | label     | String | A label the users has set to identify their wallet |
 
 
-## CONNECTED_EN
+## CONNECTED
 
 On a CONNECTED event, the user has approved the connection of the dapp with one of their accounts. This will fire the first time any of one of the following methods are called from the dapp: `getAccount`, `invoke`, `send`.
 
@@ -49,14 +49,14 @@ Teemo.NEO.CONNECTED
 | label     | String | A label the users has set to identify their wallet |
 
 
-## DISCONNECTED_EN
+## DISCONNECTED
 
 On a DISCONNECTED event, the account connected to the dapp via the dapi provider has been disconnected (logged out).
 
 ### Full event name
 Teemo.NEO.DISCONNECTED
 
-## NETWORK_CHANGED_EN
+## NETWORK_CHANGED
 
 On a NETWORK_CHANGED event, the user has changed the network their provider wallet is connected to. The event will return the updated network details.
 

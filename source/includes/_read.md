@@ -1,8 +1,8 @@
-# Read Methods
+# 读类型方法
 
-Read methods do not alter the state of the blockchain. It can help you query information about your user, and provide you with relevant information:
+读方法不改变链数据. 它帮助你为你的用户查询信息, 也为你的Dapp提供必要的信息:
 
-## getProvider_EN
+## getProvider_获得提供者信息
 
 ```typescript
 Teemo.NEO.getProvider()
@@ -39,7 +39,7 @@ Teemo.NEO.getProvider()
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -57,35 +57,35 @@ Teemo.NEO.getProvider()
 }
 ```
 
-Returns information about the dAPI provider, including who this provider is, the version of their dAPI, and the NEP that the interface is compatible with.
+返回Dapi提供者（插件钱包）的信息，包括名字、版本、NEP信息以及扩展信息。
 
-### Input Arguments
+### 输入参数
 
-None
+无需输入参数
 
-### Success Response
-| Parameter     | Type     | Description                                                      |
+### 成功的返回
+| 参数名         | 类型     | 说明                                                             |
 |:------------- |:-------- |:---------------------------------------------------------------- |
-| name          | String   | The name of the wallet provider                                  |
-| website       | String   | The website of the wallet provider                               |
-| version       | String   | The version of the dAPI that the the wallet supports             |
-| compatibility | String[] | A list of all applicable NEPs which the wallet provider supports |
-| extra         | Object   | Provider specific attributes                                     |
+| name          | String   | 钱包（Dapi提供者）的名称                                           |
+| website       | String   | 钱包（Dapi提供者）的官方网址                                       |
+| version       | String   | 钱包（Dapi提供者）提供Dapi的版本                                   |
+| compatibility | String[] | 钱包（Dapi提供者）支持的NEP协议列表                                |
+| extra         | Object   | 钱包（Dapi提供者）的附加属性                                       |
 
-##### extra
-| Parameter | Type   | Description               |
+##### 扩展
+| 参数名     | 类型   | 说明                      |
 | --------- | ------ | ------------------------- |
-| theme     | string | UI theme of the provider  |
-| currency  | string | Base currency set by user |
+| theme     | string | 钱包（Dapi提供者）的UI风格  |
+| currency  | string | 用户设置的基础货币          |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## getNetworks_EN
+## getNetworks_获取网络参数
 
 ```typescript
 dapi.NEO.getNetworks()
@@ -113,7 +113,7 @@ dapi.NEO.getNetworks()
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -122,28 +122,28 @@ dapi.NEO.getNetworks()
 }
 ```
 
-Returns the networks the wallet provider has available to connect to, along with the default network the wallet is currently set to.
+返回钱包（Dapi提供者）允许的网络类型, 并返回目前用户选择的网络.
 
-### Input Arguments
+### 输入参数
 
-None
+无需输入参数
 
-### Success Response
+### 成功的返回
 
-| Parameter      | Type     | Description                                                        |
+| 参数名         | 类型      | 说明                                                                |
 |:-------------- |:-------- |:------------------------------------------------------------------ |
-| networks       | String[] | A list of all networks which this wallet provider allows access to |
-| defaultNetwork | String   | Network the wallet is currently set to                             |
+| networks       | String[] | 一个允许的网络类型的列表                                             |
+| defaultNetwork | String   | 目前钱包设置的网络类型                                               |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
 
-## getAccount_EN
+## getAccount_获取账户信息
 
 ```typescript
 Teemo.NEO.getAccount()
@@ -168,7 +168,7 @@ Teemo.NEO.getAccount()
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -177,28 +177,28 @@ Teemo.NEO.getAccount()
 }
 ```
 
-Return the Account that is currently connected to the dApp.
+返回当前钱包（Dapi提供者）被选中（使用中）的账户信息.
 
-### Success Response
-| Parameter | Type   | Description                                                        |
-|:--------- |:------ |:------------------------------------------------------------------ |
-| address   | String | The address of the account that is currently connected to the dapp |
-| label     | String | A label the users has set to identify their wallet                 |
+### 成功的返回
+| 参数名     | 类型   | 说明                                                                |
+|:--------- |:------ |:------------------------------------------------------------------  |
+| address   | String | 当前钱包（Dapi提供者）被选中（使用中）的NEO地址                         |
+| label     | String | 当前钱包（Dapi提供者）被选中（使用中）的用户设定名称                    |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## getBalance_EN
+## getBalance_获取资产余额
 
 ```typescript
 Teemo.NEO.getBalance({
-  params:{  
+  params: {  
     "address": "ASBhJFN3XiDu38EdEQyMY3N2XwGh1gd5WW",  
-    "assets": ["74f2dc36a68fdc4682034178eb2220729231db76"]
+    "assets": ["602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"]
   },
   network: 'TestNet',
 })
@@ -227,10 +227,10 @@ Teemo.NEO.getBalance({
 });
 ```
 
-> Single Address with specific balances requested
+> 单地址特定资产请求
 
 ```typescript
-// input
+// 输入
 {
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
@@ -239,7 +239,7 @@ Teemo.NEO.getBalance({
   network: 'TestNet',
 }
 
-// output
+// 输出
 {
   AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru: [
     {
@@ -251,10 +251,10 @@ Teemo.NEO.getBalance({
 }
 ```
 
-> Single Address with all balances requested
+> 单地址全部资产（设置显示）请求
 
 ```typescript
-// input
+// 输入
 {
   params: {
     address: 'AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru',
@@ -262,7 +262,7 @@ Teemo.NEO.getBalance({
   network: 'TestNet',
 }
 
-// output
+// 输出
 {
   AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru: [
     {
@@ -289,10 +289,10 @@ Teemo.NEO.getBalance({
 }
 ```
 
-> Multiple address balance queries
+> 多地址请求
 
 ```typescript
-// input
+// 输入
 {
   params: [
     {
@@ -341,51 +341,52 @@ Teemo.NEO.getBalance({
 ```
 
 
-Allows the DAPP to query the balance of a user, this includes both native assets (NEO/GAS) and NEP-5 tokens
+允许Dapp为用户查询资产余额, 此方法同时支持全局（UTXO）资产和合约（NEP-5）资产
 
-### Input Arguments
-| Parameter | Type                               | Description                                                                              |
+### 输入参数
+| 参数       | 类型                               | 说明                                                                                     |
 |:--------- |:---------------------------------- |:---------------------------------------------------------------------------------------- |
-| params    | BalanceRequest or BalanceRequest[] | A list of Balance Request Objects, specifying which addresses, and which assets to query |
-| network   | String                             | The call will only work for the networks available in the GetNetworks command            |
+| params    | BalanceRequest or BalanceRequest[] | 一个BalanceRequest结构或者一个BalanceRequest结构组                                         |
+| network   | String                             | 从GetNetworks获取的网络名称            |
 
-#### Balance Request
-| Parameter  | Type     | Description                                                                                   |
-|:---------- |:-------- |:--------------------------------------------------------------------------------------------  |
-| address    | String   | The address whose balance you want to query                                                   |
-| assets     | String[] | A list of contract hash (or symbold on TestNet only) to query the balance for                 |
-| fetchUTXO? | boolean  | The response will fetch NEO and GAS UTXO's if this attribute is true(Teemo Not yet supported)|
+#### BalanceRequest 余额请求结构
+| 参数        | 类型     | 说明                                                                          |
+|:---------- |:-------- |:----------------------------------------------------------------------------- |
+| address    | String   | 希望获取余额的地址                                                              |
+| assets     | String[] | 一个资产ID或一个资产ID组                                                        |
+| fetchUTXO? | boolean  | 这是一个可选的参数，表示是否需要返回UTXO（Teemo暂时不支持）          |
 
-### Success Response
-| Parameter | Type              | Description                                                                          |
+### 成功的返回
+| 参数       | 类型              | 说明                                                                                 |
 |:--------- |:----------------- |:------------------------------------------------------------------------------------ |
-| address_1 | BalanceResponse[] | This key is the actual address of the query eg. "AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru" |
-| address_2 | BalanceResponse[] | This key is the actual address of the query eg. "AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ" |
-| address_n | BalanceResponse[] | This key is the actual address of the query eg. "AUdawyrLMskxXMUE8osX9mSLKz8R7777kE" |
+| address_1 | BalanceResponse[] | 键是地址，比如"AeysVbKWiLSuSDhg7DTzUdDyYYKfgjojru"                                    |
+| address_2 | BalanceResponse[] | 键是地址，比如"AbKNY45nRDy6B65YPVz1B6YXiTnzRqU2uQ"                                    |
+| address_n | BalanceResponse[] | 键是地址，比如"AUdawyrLMskxXMUE8osX9mSLKz8R7777kE"                                    |
 
 <aside class="notice">
-The amount of addresses is n where n is the number of addresses specified in your query
+address_1等表示真实地址的指代
 </aside>
 
 
-#### BalanceResponse
-| Parameter | Type    | Description                                                                                                                   |
-|:--------- |:------- |:----------------------------------------------------------------------------------------------------------------------------- |
-| assetID   | String  | ID of the given asset                                                                                                         |
-| symbol    | String  | Symbol of the given asset                                                                                                     |
-| amount    | String  | Double Value of the balance represented as a String                                                                           |
-| unspent   | UTXO[]? | If fetch utxo's was turned on then the utxo array will be returned for the native assets NEO and GAS(Teemo Not yet supported)|
+#### 余额返回结构
+| 参数       | 类型    | 说明                                                                                                 |
+|:--------- |:------- |:---------------------------------------------------------------------------------------------------- |
+| assetID   | String  | 资产ID                                                                                                |
+| symbol    | String  | 资产的单位名称                                                                                         |
+| amount    | String  | 资产的余额                                                                                            |
+| unspent   | UTXO[]? | 未使用的UTXO（如果入参fetchUTXO为true）（Teemo暂时不支持）                                             |
 
-#### UTXO (Teemo Not yet supported)
-| Parameter      | Type   | Description                                                           |
+#### UTXO结构
+| 参数           | 类型    | 说明                                                                  |
 |:-------------- |:------ |:--------------------------------------------------------------------- |
-| asset          | String | Script hash of the native asset                                       |
-| createdAtBlock | String | Block number where this utxo was created                              |
-| index          | Int    | Output index of the UTXO relative to the txid in which it was created |
-| txid           | String | The transaction id of this UTXO                                       |
-| value          | String | The double value of this UTXO represented as a String                 |
+| asset          | String | 资产ID                                                                |
+| createdAtBlock | String | UTXO创建的块高度                                                       |
+| index          | Int    | UTXO创建交易中的output中的排序号                                        |
+| txid           | String | UTXO所在交易的txid                                                     |
+| value          | String | UTXO的金额                                                             |
 
-## getStorage_EN
+
+## getStorage_获取存储区值
 
 ```typescript
 Teemo.NEO.getStorage({
@@ -412,7 +413,7 @@ Teemo.NEO.getStorage({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -421,28 +422,28 @@ Teemo.NEO.getStorage({
 ```
 
 
-Returns the raw value located in contract storage
+返回合约私有化存储区的值
 
-### Input Arguments
-| Parameter  | Type   | Description                                                  |
+### 输入参数
+| 参数名     | 类型    | 说明                                                          |
 |:---------- |:------ |:------------------------------------------------------------ |
-| scriptHash | String | Scripthash of the contract whose storage you are querying on |
-| key        | String | Key of the storage value to retrieve from the contract       |
-| network    | String | Network alias to submit this request to.                     |
+| scriptHash | String | 私有化存储区数据所属的合约Hash                                  |
+| key        | String | 需要查询的数据所对应的唯一键（需要转化为hex string）              |
+| network    | String | 网络类别选择                                                   |
 
-### Success Response
-| Parameter | Type   | Description                               |
+### 成功的返回
+| 参数名     | 类型   | 说明                                       |
 |:--------- |:------ |:----------------------------------------- |
-| result    | String | The raw value located in contract storage |
+| result    | String | 私有化存储区数据的hex string表示            |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## invokeRead_EN
+## invokeRead_只读模拟执行合约调用
 
 ```typescript
 Teemo.NEO.invokeRead({
@@ -478,7 +479,7 @@ Teemo.NEO.invokeRead({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -494,44 +495,44 @@ Teemo.NEO.invokeRead({
 }
 ```
 
-Execute a contract invocation in read-only mode.
+以只读模式模拟执行合约方法
 
-### Input Arguments
-| Parameter  | Type       | Description                                                                    |
+### 输入参数   
+| 参数名      | 类型       | 说明                                                                           |
 |:---------- |:---------- |:------------------------------------------------------------------------------ |
-| scriptHash | String     | The script hash of the contract you want to invoke a read on                   |
-| operation  | String     | The operation on the smart contract that you want to invoke a read on          |
-| args       | Argument[] | The input arguments necessary to perform this operation                        |
-| network    | String     | Network alias to submit this request to. If omitted, will default to "TestNet" |
+| scriptHash | String     | 需要执行的合约的Hash                                                             |
+| operation  | String     | 需要执行的合约的方法名                                                           |
+| args       | Argument[] | Argument合约参数组                                                                  |
+| network    | String     | 网络类别选择                                                                    |
 
-#### Argument
-| Parameter | Type   | Description                                               |
+#### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
-| type      | String | The type of the argument with you are using               |
-| value     | String | String representation of the argument which you are using |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
 
 <aside class =notice>
-Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
 </aside>
 
-### Success Response
-The wallet will return the direct response from the RPC node.
+### 成功的返回
+结果将从CLI RPC接口直接返回
 
-| Parameter    | Type       | Description                                                                                   |
+| 参数名        | 类型       | 说明                                                                                          |
 |:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
-| script       | String     | The script which was run                                                                      |
-| state        | String     | Status of the executeion                                                                      |
-| gas_consumed | String     | Estimated amount of GAS to be used to execute the invocation. (Up to 10 free per transaction) |
-| stack        | Argument[] | An array of response arguments                                                                |
+| script       | String     | 调用合约的脚本                                                                                 |
+| state        | String     | 执行状态结果                                                                                   |
+| gas_consumed | String     | 预估的系统费需求（不包括写操作的费用）                                                            |
+| stack        | Argument[] | 具体的返回数据组                                                                                |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## invokeReadGroup_EN
+## invokeReadGroup_只读模拟执行合约调用组
 
 ```typescript
 Teemo.NEO.invokeReadGroup({
@@ -580,7 +581,7 @@ Teemo.NEO.invokeReadGroup({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -608,44 +609,44 @@ Teemo.NEO.invokeReadGroup({
 }
 ```
 
-Execute a contract invocation group in read-only mode.You can get multiple information in the contract at one time, such as getting all the basic information of NEP5 at one time.
+以只读模式模拟执行合约方法组，可以一次性获取合约中多个信息，比如一次性获取NEP5所有基本信息
 
 ### 输入参数
-| Parameter  | Type             | Description                                                                    |
+| 参数名      | 类型             | 说明                                                                           |
 |:---------- |:-----------------|:------------------------------------------------------------------------------ |
-| group      | invokeRead[]     | An array of invokeRead input arguments                                         |
+| group      | invokeRead[]     | invokeRead入参数组                                                              |
 
-#### invokeRead
-| Parameter  | Type       | Description                                                                    |
+#### invokeRead入参结构
+| 参数名      | 类型       | 说明                                                                           |
 |:---------- |:---------- |:------------------------------------------------------------------------------ |
-| scriptHash | String     | The script hash of the contract you want to invoke a read on                   |
-| operation  | String     | The operation on the smart contract that you want to invoke a read on          |
-| args       | Argument[] | The input arguments necessary to perform this operation                        |
-| network    | String     | Network alias to submit this request to. If omitted, will default to "TestNet" |
+| scriptHash | String     | 调用的合约Hash                                                                   |
+| operation  | String     | 需要执行的合约的方法名                                                           |
+| args       | Argument[] | Argument合约参数组                                                                  |
+| network    | String     | 网络类别选择                                                                    |
 
-#### Argument
-| Parameter | Type   | Description                                               |
+#### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
-| type      | String | The type of the argument with you are using               |
-| value     | String | String representation of the argument which you are using |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
 
 <aside class =notice>
-Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
 </aside>
 
 ### 成功的返回
-The wallet will return the direct response from the RPC node.
+结果将从CLI RPC接口直接返回
 
-| Parameter    | Type       | Description                                                                                   |
+| 参数名        | 类型       | 说明                                                                                          |
 |:------------ |:---------- |:--------------------------------------------------------------------------------------------- |
-| script       | String     | The script which was run                                                                      |
-| state        | String     | Status of the executeion                                                                      |
-| gas_consumed | String     | Estimated amount of GAS to be used to execute the invocation. (Up to 10 free per transaction) |
-| stack        | Argument[] | An array of response arguments                                                                |
+| script       | String     | 调用合约的脚本                                                                              |
+| state        | String     | 执行状态结果                                                                                   |
+| gas_consumed | String     | 预估的系统费需求（不包括写操作的费用）                                                            |
+| stack        | Argument[] | 具体的返回数据组                                                                                |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |

@@ -9,16 +9,10 @@ toc_footers:
   - <a href='https://nel.group/'>NewEconoLabs NEL</a>
 
 includes:
-  - _read_CN.md
-  - _write_CN.md
-  - _events_CN.md
-  - _errors_CN.md
-  - _intro.md
   - _read.md
   - _write.md
   - _events.md
   - _errors.md
-
 
 search: true
 ---

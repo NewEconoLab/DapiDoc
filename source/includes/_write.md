@@ -1,14 +1,14 @@
-# Write Methods
+# 写类型方法
 
-Write methods will alter the state on the blockchain, and require a user signature.
+写类型方法会修改区块状态，并且需要用户私钥签名（需要用户显式允许）
 
-## send_EN
+## send 发送转账交易
 
 ```typescript
 Teemo.NEO.send({
   fromAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   toAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
-  asset: 'GAS',
+  asset: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
   amount: '0.0001',
   remark: 'Hash puppy clothing purchase. Invoice#abc123',
   fee: '0.0001',
@@ -40,7 +40,7 @@ Teemo.NEO.send({
 });
 ```
 
-> Example Response
+> 示例返回
 
 ```typescript
 {
@@ -49,37 +49,37 @@ Teemo.NEO.send({
 }
 ```
 
-The send API can be used for accepting payments from the user in a cryptocurrency that is located on the NEO blockchain. It requires user authentication in order for the transaction to be relayed. The transaction will be relayed by the wallet.
+本方法可以用于在NEO区块链上进行转账操作，同时支持全局资产（UTXO资产）和合约资产（NEP-5资产），该方法需要用户确认（会有一个确认页面弹出）。
 
-### Input Arguments
-| Parameter   | Type    | Description                                                                                                                                        |
+### 输入参数
+| 参数        | 类型     | 说明                                                                                                                                               |
 |:----------- |:------- |:-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fromAddress | String  | The address from where the transaction is being sent. This will be the same value as the one received from the getAccount API                      |
-| toAddress   | String  | The address to where the user should send their funds                                                                                              |
-| asset       | String  | The asset which is being requested for payment...e.g NEP5 scripHash, GAS or CGAS                                                                   |
-| amount      | String  | The amount which is being requested for payment                                                                                                    |
-| remark      | String? | A transaction attribute remark which may be placed in the transaction, this data will appear in the transaction record on the blockchain           |
-| fee         | String? | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
-| network     | String  | Network alias to submit this request to.                                                                                                           |
+| fromAddress | String  | 转账的发送方地址。需要用此地址的私钥进行签名（用户拥有此地址）                                                                                           |
+| toAddress   | String  | 转账的接收方地址。                                                                                                                                   |
+| asset       | String  | 资产的ID，如GAS为602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7，或NNC为fc732edee1efdf968c23c20a9628eaa5a6ccb934                   |
+| amount      | String  | 转账的金额。钱包（Dapi提供者）将自动为您处理资产精度，只需输入浮点数。                                                                                   |
+| remark      | String? | 交易的备注, 备注将会被记录到链上                                                                                                                      |
+| fee         | String? | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费                                |
+| network     | String  | 网络类别的选择，信息来自getNetworks方法                                                                                                               |
 
-### Success Response
-| Parameter | Type   | Description                                                                   |
+### 成功的返回
+| 参数      | 类型    | 说明                                                                          |
 |:--------- |:------ |:----------------------------------------------------------------------------- |
-| txid      | String | The transaction id of the send request which can be queried on the blockchain |
-| nodeURL   | String | The node to which the transaction was submitted to                            |
+| txid      | String | 发送的交易体的hash                                                             |
+| nodeURL   | String | 发送交易体的NEO节点的URL地址                                                    |
 
 <aside class="warning">
-It is reccommended that the DAPP take appropriate levels of risk prevention when accepting transactions. The dapp can query the mempool of a known node to ensure that the transaction will indeed be broadcast on the network.
+Dapp应该注意，获取到txid只代表节点发送交易体成功，并不代表交易已被共识（上链）。 Dapp可以查询已知节点的gettransactionheight方法（CLI 2.10.0+）以确保事务确实将在网络上广播。
 </aside>
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## Invoke_EN
+## Invoke 发送合约调用交易
 ```typescript
 Teemo.NEO.invoke({
   "scriptHash":"74f2dc36a68fdc4682034178eb2220729231db76",
@@ -99,7 +99,7 @@ Teemo.NEO.invoke({
       }
   ],
   "fee":"0.001",
-  "description":"NNC transfer",
+  "description":"NNC转账",
   "network":"TestNet"
 })
 .then(({txid, nodeUrl}: InvokeOutput) => {
@@ -122,7 +122,7 @@ Teemo.NEO.invoke({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 {
@@ -131,70 +131,70 @@ Teemo.NEO.invoke({
 }:
 ```
 
-Invoke allows for the generic execution of smart contracts on behalf of the user. It is reccommended to have a general understanding of the NEO blockchain, and to be able successfully use all other commands listed previously in this document before attempting a generic contract execution.
+本方法构造合约调用交易并发送。合约调用交易是使用智能合约写方法（改变私有化存储区的操作）的唯一途径，无论是执行NEP-5转账还是参与一次NNS竞拍，都需要构造合约调用交易。
 
-### Input arguments
-| Parameter                   | Type                 | Description                                                                                                                                        |
-|:--------------------------- |:-------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| scriptHash                  | String               | The script hash of the contract that you wish to invoke                                                                                            |
-| operation                   | String               | The operation on the smart contract that you wish to call. This can be fetched from the contract ABI                                               |
-| args                        | Argument[]           | A list of arguments necessary to perform on the operation you wish to call                                                                         |
-| description                 | String               | For a brief description of the operation, the description will be displayed on the confirmation page of the wallet to help the user understand (the description will not be stored on the Blockchain) |
-| fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
-| network                     | String               | Network alias to submit this request to.                                                                                                           |
-| attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale                                   |
-| assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemo Not yet supported)                            |
-| triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemo Not yet supported)                                                                                      |
+### 输入参数
+| 参数                        | 类型                  | 说明                                                                                                                 |
+|:--------------------------- |:-------------------- |:-------------------------------------------------------------------------------------------------------------------- |
+| scriptHash                  | String               | 所需调用合约的Hash                                                                                                    |
+| operation                   | String               | 所需调用合约的方法名. 可以从合约的ABI文件或者合约开发者的文档获得                                                         |
+| args                        | Argument[]           | 一个合约方法输入参数的数组                                                                                             |
+| description                 | String               | 对于此次操作的简要说明，该说明将会显示在钱包的确认页面帮助用户理解（说明暂时不会存储在链上）                                 |
+| fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
+| network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
+| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要                                                                                      |
+| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemo暂不支持）                                            |
+| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemo暂不支持）                                                                          |
 
-#### Argument
-| Parameter | Type   | Description                                               |
+#### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
-| type      | String | The type of the argument with you are using               |
-| value     | String | String representation of the argument which you are using |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
 
 <aside class =notice>
-Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"
 </aside>
 
-#### AttachedAssets
-| Parameter | Type    | Description                                            |
+#### AttachedAssets 附加资产
+| 参数名     | 类型    | 说明                                                   |
 |:--------- |:------- |:------------------------------------------------------ |
-| NEO       | String? | The amount of NEO to attach to the contract invocation |
-| GAS       | String? | The amount of GAS to attach to the contract invocation |
+| NEO       | String? | 附加NEO的数量                                           |
+| GAS       | String? | 附加GAS的数量                                           |
 
-#### AssetIntentOverrides(Teemo Not yet supported)
-| Parameter | Type          | Description                                        |
+#### AssetIntentOverrides 附加资产UTXO覆盖 （Teemo暂不支持）
+| 参数名     | 类型          | 说明                                               |
 |:--------- |:------------- |:-------------------------------------------------- |
-| inputs    | AssetInput[]  | A list of UTXO inputs to use for this transaction  |
-| outputs   | AssetOutput[] | A list of UTXO outputs to use for this transaction |
+| inputs    | AssetInput[]  | 一个 UTXO inputs 的数组                             |
+| outputs   | AssetOutput[] | 一个 UTXO outputs 的数组                            |
 
-#### AssetInput(Teemo Not yet supported)
-| Parameter | Type   | Description                                              |
+#### AssetInput 附加资产UTXO输入 （Teemo暂不支持）
+| 参数名     | 类型   | 说明                                                      |
 |:--------- |:------ |:-------------------------------------------------------- |
-| txid      | String | Transaction id to be used as input                       |
+| txid      | String | 交易的ID将被作为UTXO的输入使用                             |
 | index     | String | Index of the UTXO, can be found from transaction details |
 
-#### AssetOutput(Teemo Not yet supported)
-| Parameter | Type   | Description                                                           |
+#### AssetOutput 附加资产UTXO输出 （Teemo暂不支持）
+| 参数名     | 类型   | 说明                                                                  |
 |:--------- |:------ |:--------------------------------------------------------------------- |
-| asset     | String | asset ID                                                              |
-| value     | String | asset amount                                                          |
-| address   | String | The address to where the user should send their funds                 |
+| asset     | String | 资产ID                                                                |
+| value     | String | 资产金额                                                               |
+| address   | String | 转账的接收方的地址                                                     |
 
-### Success Response
-| Parameter | Type   | Description                                                                   |
+### 成功的返回
+| 参数      | 类型    | 说明                                                                          |
 |:--------- |:------ |:----------------------------------------------------------------------------- |
-| txid      | String | The transaction id of the send request which can be queried on the blockchain |
-| nodeURL   | String | The node to which the transaction was submitted to                            |
+| txid      | String | 发送的交易体的hash                                                             |
+| nodeURL   | String | 发送交易体的NEO节点的URL地址                                                    |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
 
-## InvokeGroup_EN
+## InvokeGroup 发送合约调用交易组
 ```typescript
 Teemo.NEO.invokeGroup({
   "merge": true,
@@ -216,7 +216,7 @@ Teemo.NEO.invokeGroup({
           "value": "100000"
         }
       ],
-      "description": "NNC transfer",
+      "description": "NNC转账",
       "fee": "0",
       "network": "TestNet"
     },
@@ -233,7 +233,7 @@ Teemo.NEO.invokeGroup({
           "value": "74f2dc36a68fdc4682034178eb2220729231db76"
         }
       ],
-      "description": "Recharge confirmation",
+      "description": "充值确认",
       "fee": "0.001",
       "network": "TestNet"
     }
@@ -259,7 +259,7 @@ Teemo.NEO.invokeGroup({
 });
 ```
 
-> Example Response
+> 返回示例
 
 ```typescript
 //merge=true
@@ -283,67 +283,67 @@ Teemo.NEO.invokeGroup({
 ]
 ```
 
-This method constructs a contract to call a transaction group and sends it, and has two modes: merge mode and non-merge mode:
+本方法构造合约调用交易组并发送，并且内涵两种模式：聚合模式和非聚合模式：
 
-Merge mode: The wallet will construct each Invoke contract call operation to be entered in order into **a single** contract invoke transaction body, enabling multiple contract methods to be executed in one transaction. This mode is suitable for small transactions (less costly GAS) for multiple different contracts to be merged into one transaction. Regarding the merge mode, it needs to be paid attention to whether the GAS consumption of the script execution will surpass 10GAS after the merge. In the merge mode, the total fee of the transaction is the sum of the fees in each Invoke element.
+聚合模式：钱包将输入的每个Invoke合约调用操作按照顺序统一构造进入 **一个单一的** 合约调用交易体，使得多个合约方法能够在一个交易中执行完成。该模式适合多个不同合约的小操作（耗费GAS少的）合并一个交易。聚合模式需要注意，是否聚合后会是的脚本执行超过10GAS。聚合模式下，交易的总的fee为各Invoke元素中fee之和。
 
-Non-merge mode: The wallet will construct each Inovke contract call operation to be entered in order as **multiple independent** contract invoke transaction bodies. Only after the previous transaction is confirmed as consensus (confirmed on the blockchain), the next transaction will be sent. This mode is suitable for a series of associated contract operations, and is automatically lined up and executed in a logical relationship.
+非聚合模式：钱包将输入的每个Inovke合约调用操作按照顺序构造为 **多个独立的** 合约调用交易体，只有前一个交易被确认已经共识（上链）才会发送下一个交易。该模式适合一系列关联的合约操作，按先后逻辑关系自动搭接执行。
 
-Hook_Txid: This type is specific to the InvokeGroup method, which means that the txid of the previous transaction is used as the input parameter of the next transaction, and both the merge mode and the non-merge mode are supported. However, there are the following restrictions:
+Hook_Txid：此类型为InvokeGroup方法特有，意为将上一个交易的txid作为下一个交易的输入参数，同时支持聚合模式和非聚合模式。但是有以下限制：
 
-1. Hook_Txid cannot appear in the first Invoke element
-2. The value of Hook_Txid must be 0, meaning that only the txid of the first transaction can be taken.
-3. When using Hook_Txid, you can only define up to two Invoke elements in the merge mode.
+1. Hook_Txid不能出现在第一个Invoke元素
+2. Hook_Txid的value必须是0，意为只能取第一个交易的txid
+3. 使用Hook_Txid时，在聚合模式下，最多只能定义两个Invoke元素
 
-### Input arguments
-| Parameter | Type     | Description                                               |
+### 输入参数
+| 参数名     | 类型     | 说明                                                      |
 |:--------- |:------   |:--------------------------------------------------------- |
-| merge     | Boolean  | Choose to use merge mode                                  |
-| group     | Invoke[] | A list of Invoke                                          |
+| merge     | Boolean  | 选择是否采用聚合模式                                        |
+| group     | Invoke[] | Invoke结构的数组                                           |
 
-#### Invoke
-| Parameter                   | Type                 | Description                                                                                                                                        |
-|:--------------------------- |:-------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| scriptHash                  | String               | The script hash of the contract that you wish to invoke                                                                                            |
-| operation                   | String               | The operation on the smart contract that you wish to call. This can be fetched from the contract ABI                                               |
-| args                        | Argument[]           | A list of arguments necessary to perform on the operation you wish to call                                                                         |
-| description                 | String               | For a brief description of the operation, the description will be displayed on the confirmation page of the wallet to help the user understand (the description will not be stored on the Blockchain) |
-| fee                         | String?              | If a fee is specified then the wallet SHOULD NOT override it, if a fee is not specified the wallet SHOULD allow the user to attach an optional fee |
-| network                     | String               | Network alias to submit this request to.                                                                                                           |
-| attachedAssets              | AttachedAssets?      | Describes the assets to attach with the smart contract, e.g. attaching assets to mint tokens during a token sale                                   |
-| assetIntentOverrides        | AssetIntentOverrides | Used to specify the exact UTXO's to use for attached assets. If this is provided fee and attachedAssets will be ignored(Teemo Not yet supported)                            |
-| triggerContractVerification | Boolean?             | Adds the instruction to invoke the contract verifican trigger(Teemo Not yet supported)                                                                                      |
+#### Invoke结构
+| 参数                        | 类型                  | 说明                                                                                                                 |
+|:--------------------------- |:-------------------- |:-------------------------------------------------------------------------------------------------------------------- |
+| scriptHash                  | String               | 所需调用合约的Hash                                                                                                    |
+| operation                   | String               | 所需调用合约的方法名. 可以从合约的ABI文件或者合约开发者的文档获得                                                         |
+| args                        | Argument[]           | 一个合约方法输入参数的数组                                                                                             |
+| description                 | String               | 对于此次操作的简要说明，该说明将会显示在钱包的确认页面帮助用户理解（说明暂时不会存储在链上）                                 |
+| fee                         | String?              | 网络手续费，目前的定义为网络费低于0.0001GAS的交易视作免费交易，其共识优先级低于付费交易。如果为0，用户还可以在确认页添加网络费 |
+| network                     | String               | 网络类别的选择，信息来自getNetworks方法                                                                                |
+| attachedAssets              | AttachedAssets?      | 合约附加资产，在代币销售方法会需要                                                                                      |
+| assetIntentOverrides        | AssetIntentOverrides | 指定附加资产UTXO，如果使用此项，fee和attachedAssets将被忽略（Teemo暂不支持）                                            |
+| triggerContractVerification | Boolean?             | 添加指令调用合约的鉴权触发器（Teemo暂不支持）                                                                          |
 
-##### Argument
-| Parameter | Type   | Description                                               |
+##### Argument参数结构
+| 参数名     | 类型   | 说明                                                       |
 |:--------- |:------ |:--------------------------------------------------------- |
-| type      | String | The type of the argument with you are using               |
-| value     | String | String representation of the argument which you are using |
+| type      | String | 合约参数的类型                                             |
+| value     | String | 合约参数的值                                               |
 
 <aside class =notice>
-Available types are "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"|"Hook_Txid"
+type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"ByteArray"|"Array"|"Address"|"Hook_Txid"
 </aside>
 
-#### AttachedAssets
-| Parameter | Type    | Description                                            |
+#### AttachedAssets 附加资产
+| 参数名     | 类型    | 说明                                                   |
 |:--------- |:------- |:------------------------------------------------------ |
-| NEO       | String? | The amount of NEO to attach to the contract invocation |
-| GAS       | String? | The amount of GAS to attach to the contract invocation |
+| NEO       | String? | 附加NEO的数量                                           |
+| GAS       | String? | 附加GAS的数量                                           |
 
-### Success Response
-| Parameter | Type   | Description                                                                   |
+### 成功的返回
+| 参数      | 类型    | 说明                                                                          |
 |:--------- |:------ |:----------------------------------------------------------------------------- |
-| []        | Array  | A List of Invoke Response|
+| []        | Array   | invoke返回结构的数组                                                             |
 
-#### Invoke Response
-| Parameter | Type   | Description                                                                   |
+#### invoke返回结构
+| 参数      | 类型    | 说明                                                                          |
 |:--------- |:------ |:----------------------------------------------------------------------------- |
-| txid      | String | The transaction id of the send request which can be queried on the blockchain |
-| nodeURL   | String | The node to which the transaction was submitted to                            |
+| txid      | String | 发送的交易体的hash                                                             |
+| nodeURL   | String | 发送交易体的NEO节点的URL地址                                                    |
 
-### Error Response
-| Parameter   | Type    | Description                                  |
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
 |:----------- |:------- |:-------------------------------------------- |
-| type        | String  | The type of error which has occured          |
-| description | String? | A description of the error which has occured |
-| data        | String? | Any raw data associated with the error       |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |

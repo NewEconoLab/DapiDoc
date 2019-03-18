@@ -26,7 +26,7 @@ The programs that provide Dapi come in a variety of forms, including NEL's Teemo
 
 We do our best to implement the overall consistencey and compatibility of the Dapis, but each Dapi provider (program) varies slightly depending on its own characteristics.
 
-Here we will provide the developer Dapi calling methods (part of which are only related to the NEL's Teemo Chrome extension wallet)
+Here we will provide the developer Dapi calling methods (part of which are only related to the NEL's Teemo Chrome extension wallet).
 
 # Teemo extension wallet
 

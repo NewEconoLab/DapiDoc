@@ -389,10 +389,10 @@ address_1等表示真实地址的指代
 ## getStorage_获取存储区值
 
 ```typescript
-Teemo.NEO.getStorage({
-  scriptHash: '505663a29d83663a838eee091249abd167e928f5',
-  key: 'game.status',
-  network: 'TestNet'
+Teemo.NEO.getStorage(    {
+    "scriptHash":"03febccf81ac85e3d795bc5cbd4e84e907812aa3",
+    "key":"5065746572",
+    "network":"TestNet"
 })
 .then(res => {
   const value = res.result;
@@ -417,7 +417,7 @@ Teemo.NEO.getStorage({
 
 ```typescript
 {
-  result: 'hello world'
+  result: '4c696e'
 }
 ```
 

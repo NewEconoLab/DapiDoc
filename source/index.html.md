@@ -52,6 +52,6 @@ Switch to developer mode
 
 Click on "Load unzipped extensions" - select the **TeemoWallet\dist folder
 
-You can configure the **TeemoWallet\test folder as a website (such as http://localhost/)
+You can configure the **TeemoWallet\test folder as a website (such as http://localhost/).You Can also browse https://neweconolab.github.io/TeemmoWallet/test/,Free from deploying
 
 Open this website and test the events and all the methods. This website page is also a development example.

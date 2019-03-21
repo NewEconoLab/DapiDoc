@@ -51,6 +51,6 @@ Chrome菜单-更多工具-扩展程序
 
 点击“加载已解压的扩展程序”-选择**TeemoWallet\dist文件夹
 
-可以将**TeemoWallet\test 文件夹配置为一个网站（比如http://localhost/）
+可以将**TeemoWallet\test 文件夹配置为一个网站（比如http://localhost/）。你也可以直接浏览 https://neweconolab.github.io/TeemmoWallet/test/,免去自己部署
 
 打开这个网站，即可测试事件和所有方法。这个网站同时也是一个开发示例

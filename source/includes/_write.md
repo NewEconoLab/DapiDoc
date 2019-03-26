@@ -8,7 +8,7 @@ Write methods will alter the state on the blockchain, and require a user signatu
 Teemo.NEO.send({
   fromAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
   toAddress: 'ATaWxfUAiBcQixNPq6TvKHEHPQum9bx79d',
-  asset: 'GAS',
+  asset: '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7',
   amount: '0.0001',
   remark: 'Hash puppy clothing purchase. Invoice#abc123',
   fee: '0.0001',

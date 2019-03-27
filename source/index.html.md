@@ -66,7 +66,7 @@ window.addEventListener('Teemo.NEO.READY',(data:CustomEvent)=>{
     console.log(JSON.stringify(data.detail))
 
     const main = new Main();
-    main.start();//监听到这个事件后，才能开始插件的相关方法调用
+    main.start();//After listening to this event, you can start the related method call of the plugin.
 })
 ```
 

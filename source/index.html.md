@@ -40,6 +40,8 @@ Another feature of the extension wallet is security.The Teemo wallet protects th
 
 ## Teemo installation and development
 
+### Installation and experience
+
 Clone the project
 
 ```
@@ -55,3 +57,21 @@ Click on "Load unzipped extensions" - select the **TeemoWallet\dist folder
 You can configure the **TeemoWallet\test folder as a website (such as http://localhost/).You Can also browse [https://teemo.nel.group/test/](https://teemo.nel.group/test/) ,Free from deploying
 
 Open this website and test the events and all the methods. This website page is also a development example.
+
+### Start development
+
+```typescript
+window.addEventListener('Teemo.NEO.READY',(data:CustomEvent)=>{
+    console.log("Teemo READY ");
+    console.log(JSON.stringify(data.detail))
+
+    const main = new Main();
+    main.start();//监听到这个事件后，才能开始插件的相关方法调用
+})
+```
+
+Teemo's Dapi does not need to reference any JS or NPM packages before calling. The JS code that interacts with Teemo is automatically injected into your page, but this injection may not always be done before your first Dapi call code.
+
+In order to always interact with Teemo, we strongly recommend that the "Teemo.NEO.READY" event be captured first before any Dapi method is used. This event represents that the Teemo interaction JS has been injected into your page.
+
+If you are developing with TS (TypeScript), you may also need to add https://github.com/NewEconoLab/TeemoWallet/blob/master/dist/js/inject.d.ts to your directory, which will help the tsc engine. Identify Dapi methods and types.

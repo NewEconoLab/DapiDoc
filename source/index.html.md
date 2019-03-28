@@ -41,6 +41,7 @@ Teemo是NEL开发的一款Chrome插件钱包，该钱包力求Dapp开发者在�
 
 ### 安装与体验
 
+#### 开发版安装
 克隆项目
 
 ```
@@ -56,6 +57,12 @@ Chrome菜单-更多工具-扩展程序
 可以将**TeemoWallet\test 文件夹配置为一个网站（比如http://localhost/）。你也可以直接浏览 [https://teemo.nel.group/test/](https://teemo.nel.group/test/),免去自己部署
 
 打开这个网站，即可测试事件和所有方法。这个网站同时也是一个开发示例
+
+#### 稳定版安装
+
+[Github Release](https://github.com/NewEconoLab/TeemoWallet/releases)
+
+下载release ZIP包并解压，其他步骤和开发版相同
 
 ### 动手开发
 

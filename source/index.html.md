@@ -42,6 +42,7 @@ Another feature of the extension wallet is security.The Teemo wallet protects th
 
 ### Installation and experience
 
+#### Development Version
 Clone the project
 
 ```
@@ -57,6 +58,12 @@ Click on "Load unzipped extensions" - select the **TeemoWallet\dist folder
 You can configure the **TeemoWallet\test folder as a website (such as http://localhost/).You Can also browse [https://teemo.nel.group/test/](https://teemo.nel.group/test/) ,Free from deploying
 
 Open this website and test the events and all the methods. This website page is also a development example.
+
+#### Stable Version
+
+[Github Release](https://github.com/NewEconoLab/TeemoWallet/releases)
+
+Download the release ZIP package and unzip it. The other steps are the same as the development version.
 
 ### Start development
 

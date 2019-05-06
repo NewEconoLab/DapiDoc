@@ -113,7 +113,6 @@ Teemo.NEO.NNS.getDomainFromAddress({
 })
 .catch(error=>{
     console.log("==============进入了异常流程");
-    
     console.log(error);
     document.getElementById("getDomainFromAddress_R").innerText = JSON.stringify(error, null, 2);
     reject();

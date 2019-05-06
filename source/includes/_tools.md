@@ -52,7 +52,7 @@ true | false
 Teemo.NEO.TOOLS.getAddressFromScriptHash("72329a15ef9f2ea76cbc8dbc082c72316d87e1ae")
 .then(result=>{
     console.log(result);
-    console.log("得到的地址"+ result);
+    console.log("Address:"+ result);
     document.getElementById("getAddressFromScriptHash_R").innerText = JSON.stringify(result, null, 2);
     resolve();
 })
@@ -182,7 +182,7 @@ Teemo.NEO.TOOLS.getStringFromHexstr("746573742064656d6f")
 Teemo.NEO.TOOLS.getBigIntegerFromHexstr("3fb83001")
 .then(result=>{
     console.log(result);
-    console.log("得到的地址"+ result);
+    console.log("BigInterger"+ result);
     document.getElementById("getBigIntegerFromHexstr_R").innerText = JSON.stringify(result, null, 2);
     resolve();
 })
@@ -230,7 +230,7 @@ Teemo.NEO.TOOLS.getDecimalsStrFromAssetAmount({
     })
 .then(result=>{
     console.log(result);
-    console.log("得到的地址"+ result);
+    console.log("Decimals"+ result);
     document.getElementById("getDecimalsFromAssetAmount_R").innerText = JSON.stringify(result, null, 2);
     resolve();
 })

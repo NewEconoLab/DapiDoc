@@ -69,6 +69,36 @@ Teemo.NEO.NETWORK_CHANGED
 | networks       | String[] | A list of all networks which this wallet provider allows access to |
 | defaultNetwork | String   | Network the wallet is currently set to                             |
 
+## BLOCK_HEIGHT_CHANGED
+
+This event is triggered when the height of the network block is changed (when the block is sent), and Dapp can perform the corresponding action according to this event. This event data contains, new block height, block hash, block timestamp and block containing TXID table
+
+### Full event name
+Teemo.NEO.BLOCK_HEIGHT_CHANGED
+
+### Event data
+| Parameter      | Type   | Description                            |
+|:-------------- |:------ |:-------------------------------------- |
+| network        | String | Network Type                           |
+| blockHeight    | Number | New block index value (height)         |
+| blockTime      | Number | New block timestamp                    |
+| blockHash      | String | New block hash                         |
+| tx             | TXID[] | The new block contains the TXID group  |
+
+## TRANSACTION_CONFIRMED
+
+This event is triggered when a transaction issued through a wallet (Dapi provider) is consensus (confirmed). Dapp can perform actions based on this event.
+
+### Full event name
+Teemo.NEO.TRANSACTION_CONFIRMED
+
+### Event data
+| Parameter      | Type   | Description                                         |
+|:-------------- |:------ |:--------------------------------------------------- |
+| TXID           | String | Transaction Hash                                    |
+| blockHeight    | Number | The block index value (height) of the transaction   |
+| blockTime      | Number | Block timestamp of transaction                      |
+
 ## Event Methods
 
 ### addEventListener

@@ -47,8 +47,8 @@ Teemo.NEO.CONNECTED
 ### 事件数据
 | 参数名    | 类型    | 说明                                               |
 |:--------- |:------ |:-------------------------------------------------- |
-| address   | String | 切换后的新地址                                      |
-| label     | String | 切换后的新标签                                      |
+| address   | String | 连接时钱包选择的地址                                 |
+| label     | String | 连接时钱包选择的账户标签                             |
 
 ## DISCONNECTED 连接断开事件
 

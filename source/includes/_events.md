@@ -45,10 +45,10 @@ Dapp在首次请求钱包的任何方法前，都需要用户确认是否同意�
 Teemo.NEO.CONNECTED
 
 ### 事件数据
-| Parameter | Type   | Description                                        |
+| 参数名    | 类型    | 说明                                               |
 |:--------- |:------ |:-------------------------------------------------- |
-| address   | String | Address of the new account                         |
-| label     | String | A label the users has set to identify their wallet |
+| address   | String | 切换后的新地址                                      |
+| label     | String | 切换后的新标签                                      |
 
 ## DISCONNECTED 连接断开事件
 

@@ -129,7 +129,7 @@ Teemo.NEO.NNS.getDomainFromAddress({
 }
 ```
 
-将输入的NNS域名解析为NEO地址
+将输入的NEO地址反向解析为NNS域名
 
 ### 输入参数
 

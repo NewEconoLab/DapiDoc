@@ -650,3 +650,330 @@ type必须是以下之一： "String"|"Boolean"|"Hash160"|"Hash256"|"Integer"|"B
 | type        | String  | 错误的类型                                    |
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
+
+## getBlock_获取块数据
+
+```typescript
+Teemo.NEO.getBlock({
+            blockHeight:1112,
+            network:"TestNet",
+        }) 
+.then(result=>{
+    console.log(result);
+    document.getElementById("getBlock_R").innerText = JSON.stringify(result, null, 2);
+    resolve();
+})
+.catch(error=>{
+    console.log(error);
+    reject();
+})
+```
+
+> 返回示例
+
+```typescript
+{
+  "hash": "0xb4864e0cadb79cedc11f58b2a73e9669b784e6f3eef12dcc834bad6540043c5b",
+  "size": 686,
+  "version": 0,
+  "previousblockhash": "0xe44d7b49ca1849633713eb3266e70d63dd4ce7c17d5ea69a33101cdeb94e2bb3",
+  "merkleroot": "0x6e16a374409b9e47fbf6bba2966312b350e8c85137badb99d0991baa3a380513",
+  "time": 1494421978,
+  "index": 1112,
+  "nonce": "ffd3824d7059d835",
+  "nextconsensus": "AdyQbbn6ENjqWDa5JNYMwN3ikNcA4JeZdk",
+  "script": {
+    "invocation": "40bcc2d6213bb9e6b0b2f4ad026fb0e93b26699637d047cdb2bd2cd9625058689b8a9b1db5e9ee4806872465f782b30344ed73d3f106384cfe8001ccd202f33ac640710ed0a89eed529e8ea8193853e3dc7169f1c287f3cd66d5667e720b3b6ba1d60c071a9a2d0d69217f6154953cc4a242d579612eeedd8a1172f73d16f9b66acd40fadd8a94368d184e91fd2949e1cc01d27bbb3590d49330cf88a584163c3c83f9dc7c8d530cc14d7cb83f592cc6eaacfa34d40d777c536ae1bde646413f429925405ef0ba5cf018d84ea857073d19062fb18528506c0ab14540612b939ef09647b227f107002032f38b5f34f085602648927e7080c55bb777559e530b6c2042798640562bcd08de9cb9ac9c72fee14b99b60afa7549fd319e76d76dee4d1ecdd5393454ba4a2009c7454396836b200f3a6ef88b0fc720d741f915185f9adb36d356f8",
+    "verification": "55210209e7fd41dfb5c2f8dc72eb30358ac100ea8c72da18847befe06eade68cebfcb9210327da12b5c40200e9f65569476bbff2218da4f32548ff43b6387ec1416a231ee821034ff5ceeac41acf22cd5ed2da17a6df4dd8358fcb2bfb1a43208ad0feaab2746b21026ce35b29147ad09e4afe4ec4a7319095f08198fa8babbe3c56e970b143528d2221038dddc06ce687677a53d54f096d2591ba2302068cf123c1f2d75c2dddc542557921039dafd8571a641058ccc832c5e2111ea39b09c0bde36050914384f7a48bce9bf92102d02b1873a0863cd042cc717da31cea0d7cf9db32b74d4c72c01b0011503e2e2257ae"
+  },
+  "tx": [
+    {
+      "txid": "0x6e16a374409b9e47fbf6bba2966312b350e8c85137badb99d0991baa3a380513",
+      "size": 10,
+      "type": "MinerTransaction",
+      "version": 0,
+      "attributes": [],
+      "vin": [],
+      "vout": [],
+      "sys_fee": "0",
+      "net_fee": "0",
+      "scripts": [],
+      "nonce": 1884936245
+    }
+  ],
+  "confirmations": 2607282,
+  "nextblockhash": "0x2bc8072546971a6b87d154544cd823327efa880e608267de8029b4ce2926593a"
+}
+
+```
+
+根据块高度获取区块信息
+
+### 输入参数
+| 参数名       | 类型             | 说明                                                                           |
+|:----------  |:-----------------|:------------------------------------------------------------------------------ |
+| blockHeight | Number           | 块高度                                                                         |
+| network     | String           | 网络类别选择                                                                    |
+
+### 成功的返回
+结果将从CLI RPC接口直接返回
+
+| 参数名              | 类型       | 说明                             |
+|:------------------ |:---------- |:-------------------------------- |
+| hash               | String     | 块Hash                           |
+| size               | Number     | 块大小（字节）                    |
+| version            | Number     | 块执行的版本号                    |
+| previousblockhash  | String     | 上一块Hash                       |
+| merkleroot         | String     | 默克尔根                         |
+| time               | Number     | 块生成时间戳                      |
+| index              | Number     | 块索引（高度）                    |
+| nonce              | String     | 块伪随机数                        |
+| nextconsensus      | String     | 下一个主记账人                    |
+| script             | String     | 块调用签名认证信息                |
+| tx                 | TX[]       | 块包含的交易组                    |
+| confirmations      | Number     | 确认数（此块之后的块数）           |
+| nextblockhash      | String     | 下一个块Hash                      |
+
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
+|:----------- |:------- |:-------------------------------------------- |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
+
+## getTransaction_获取交易信息
+
+```typescript
+Teemo.NEO.getTransaction({
+            txid:'0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6',
+            network:"TestNet"
+        }) 
+.then(result=>{
+    console.log(result);
+    document.getElementById("getTransaction_R").innerText = JSON.stringify(result, null, 2);
+    resolve();
+})
+.catch(error=>{
+    console.log(error);
+    reject();
+})
+```
+
+> 返回示例
+
+```typescript
+{
+  "txid": "0x0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6",
+  "size": 203,
+  "type": "InvocationTransaction",
+  "version": 0,
+  "attributes": [
+    {
+      "usage": "Script",
+      "data": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+    }
+  ],
+  "vin": [],
+  "vout": [],
+  "sys_fee": "0",
+  "net_fee": "0",
+  "scripts": [
+    {
+      "invocation": "40091fac773afb2a988e62f0652066e0a730b30a943c953b20b2396a0482501a626e34522d2def050c6651c1000cd7b638397f0ab068d878935986e3e027d096fd",
+      "verification": "2103ea379c3fa408d71a4021ec77112478f790c698177352d81575328901ae0ee0e4ac"
+    }
+  ],
+  "script": "0233117504201104431455d6d86bdec15db437aca45b4e8705333f1fdb070a736e656f5f707269636553c10873657454797065426797210e7c98582151ceb37f9748c9a1d27d9ae6fd",
+  "gas": "0",
+  "blockhash": "0x03e55a9ca7e205bf94b0dbf3c22a47af5b0a7d7233cb296067d0121e6cd08229",
+  "confirmations": 64041,
+  "blocktime": 1555303134
+}
+
+```
+
+根据TXID获取交易信息
+
+### 输入参数
+| 参数名       | 类型             | 说明                                                                           |
+|:----------  |:-----------------|:------------------------------------------------------------------------------ |
+| txid        | String           | 交易Hash                                                                       |
+| network     | String           | 网络类别选择                                                                    |
+
+### 成功的返回
+结果将从CLI RPC接口直接返回
+
+| 参数名              | 类型           | 说明                             |
+|:------------------ |:----------     |:-------------------------------- |
+| txid               | String         | 交易Hash                         |
+| size               | Number         | 交易大小（字节）                  |
+| type               | String         | 交易类型                         |
+| version            | Number         | 交易执行的版本                    |
+| attributes         | attribute[]    | 交易附加属性组                    |
+| vin                | UTXOinput[]    | UTXO输入组                       |
+| vout               | UTXOouttput[]  | UTXO输出组                       |
+| sys_fee            | String         | 交易系统费                        |
+| net_fee            | String         | 交易网络费                        |
+| scripts            | script[]       | 交易签名认证信息组                |
+| script             | String         | 交易调用脚本                     |
+| gas                | String         | 交易消耗GAS                       |
+| blockhash          | String         | 交易所在块Hash                    |
+| confirmations      | Number         | 交易确认数                        |
+| blocktime          | Number         | 交易所在块时间戳                   |
+
+<aside class =notice>
+TX最后三个属性如果没有返回，代表交易未共识，可以以此判断交易是否已被共识
+</aside>
+
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
+|:----------- |:------- |:-------------------------------------------- |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |
+
+## getApplicationLog_获取调用交易执行日志
+
+```typescript
+Teemo.NEO.getApplicationLog({
+            txid:'0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6',
+            network:"TestNet"
+        }) // 获得余额的方法
+.then(result=>{
+    console.log(result);
+    document.getElementById("getApplicationLog_R").innerText = JSON.stringify(result, null, 2);
+    resolve();
+})
+.catch(error=>{
+    console.log(error);
+    reject();
+})
+```
+
+> 返回示例
+
+```typescript
+[
+  {
+    "txid": "0x0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6",
+    "blockindex": 2544432,
+    "executions": [
+      {
+        "trigger": "Application",
+        "contract": "0xad23d4ccc2e8d4f2747ab15c35f2852761b8df51",
+        "vmstate": "HALT, BREAK",
+        "gas_consumed": "9.509",
+        "stack": [
+          {
+            "type": "Integer",
+            "value": "1"
+          }
+        ],
+        "notifications": [
+          {
+            "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
+            "state": {
+              "type": "Array",
+              "value": [
+                {
+                  "type": "ByteArray",
+                  "value": "6f7261636c654f70657261746f72"
+                },
+                {
+                  "type": "ByteArray",
+                  "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+                },
+                {
+                  "type": "ByteArray",
+                  "value": "736e656f5f7072696365"
+                },
+                {
+                  "type": "ByteArray",
+                  "value": ""
+                },
+                {
+                  "type": "ByteArray",
+                  "value": "20110443"
+                },
+                {
+                  "type": "Integer",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          {
+            "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
+            "state": {
+              "type": "Array",
+              "value": [
+                {
+                  "type": "ByteArray",
+                  "value": "6f7261636c654f70657261746f72"
+                },
+                {
+                  "type": "ByteArray",
+                  "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+                },
+                {
+                  "type": "ByteArray",
+                  "value": "736e656f5f7072696365"
+                },
+                {
+                  "type": "ByteArray",
+                  "value": ""
+                },
+                {
+                  "type": "Integer",
+                  "value": "1127710905"
+                },
+                {
+                  "type": "Integer",
+                  "value": "5"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
+
+```
+
+根据TXID获取调用交易执行日志
+
+### 输入参数
+| 参数名       | 类型             | 说明                                                                           |
+|:----------  |:-----------------|:------------------------------------------------------------------------------ |
+| txid        | String           | 交易Hash                                                                       |
+| network     | String           | 网络类别选择                                                                    |
+
+### 成功的返回
+结果将从CLI RPC接口直接返回
+
+| 参数名                        | 类型               | 说明                              |
+|:---------------------------- |:--------------     |:--------------------------------- |
+| txid                         | String             | 交易Hash                          |
+| blockindex                   | Number             | 交易所在的区块高                   |
+| executions                   | execution[]        | 交易执行情组                       |
+| executions.trigger           | String             | 交易执行触发器种类                 |
+| executions.contract          | String             | 交易执行合约Hash                   |
+| executions.vmstate           | String             | 交易执行状态（VM是否中途奔溃）      |
+| executions.gas_consumed      | String             | 交易执行耗费GAS                   |
+| executions.stack             | TypeValue[]        | 交易执行输出堆栈（合约返回值）      |
+| executions.notifications     | notification[]     | 交易执行通知组                    |
+
+#### notification结构
+| 参数名                        | 类型               | 说明                              |
+|:----------------------------- |:--------------    |:--------------------------------- |
+| contract                      | String            | 交易执行通知所在的合约Hash          |
+| state                         | TypeValue         | 交易执行通知数据体                  |
+
+### 失败的返回
+| 参数名       | 类型    | 说明                                         |
+|:----------- |:------- |:-------------------------------------------- |
+| type        | String  | 错误的类型                                    |
+| description | String? | 错误的说明                                    |
+| data        | String? | 错误的相关数据                                |

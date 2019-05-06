@@ -35,7 +35,6 @@ Teemo.NEO.ACCOUNT_CHANGED
 | address   | String | 当前钱包（Dapi提供者）被选中（使用中）的NEO地址                         |
 | label     | String | 当前钱包（Dapi提供者）被选中（使用中）的用户设定名称                    |
 
-
 ## CONNECTED 已连接事件
 
 Dapp在首次请求钱包的任何方法前，都需要用户确认是否同意授权Dapp访问钱包。如果用户同意，Dapp将收到此事件。收到此事件同时，会获得一个getAccount方法的返回数据。
@@ -50,7 +49,6 @@ Teemo.NEO.CONNECTED
 |:--------- |:------ |:-------------------------------------------------- |
 | address   | String | Address of the new account                         |
 | label     | String | A label the users has set to identify their wallet |
-
 
 ## DISCONNECTED 连接断开事件
 
@@ -71,6 +69,36 @@ Teemo.NEO.NETWORK_CHANGED
 |:-------------- |:-------- |:------------------------------------------------------------------ |
 | networks       | String[] | 一个允许的网络类型的列表                                             |
 | defaultNetwork | String   | 目前钱包设置的网络类型                                               |
+
+## BLOCK_HEIGHT_CHANGED 块高度变更事件
+
+当所在网络区块高度变更时（出块时），将触发此事件，Dapp可根据此事件执行相应动作。本事件数据包含，新块高度、块Hash、块时间戳和块包含TXID表
+
+### 完整事件名
+Teemo.NEO.BLOCK_HEIGHT_CHANGED
+
+### 事件数据
+| 参数名          | 类型   | 说明                     |
+|:-------------- |:------ |:----------------------- |
+| network        | String | 网络类型                 |
+| blockHeight    | Number | 新块索引值（高度）        |
+| blockTime      | Number | 新块时间戳               |
+| blockHash      | String | 新块Hash                 |
+| tx             | TXID[] | 新块包含的TXID组          |
+
+## TRANSACTION_CONFIRMED 交易共识（确认）事件
+
+当通过钱包（Dapi提供者）发出的交易被共识（确认）时，将触发此事件。Dapp可根据此事件执行相应动作。
+
+### 完整事件名
+Teemo.NEO.TRANSACTION_CONFIRMED
+
+### 事件数据
+| 参数名          | 类型   | 说明                     |
+|:-------------- |:------ |:------------------------ |
+| TXID           | String | 交易Hash                 |
+| blockHeight    | Number | 交易所在块索引值（高度）   |
+| blockTime      | Number | 交易所在块时间戳          |
 
 ## 事件方法
 

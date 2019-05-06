@@ -143,7 +143,7 @@ Teemo.NEO.NNS.getDomainFromAddress({
 |:-------------  |:-------- |:---------------------------------------------------------------- |
 | namehash       | String   | 反向解析得到的NNS NameHash                                        |
 | fullDomainName | String   | 反向解析得到的NNS域名字符串                                        |
-| TTL            | String   | NNS域名所有者设置反向解析时的NNS到期时间                            |
+| TTL            | String   | NNS域名所有者设置反向解析时的NNS到期时间戳                          |
 
 ### 失败的返回
 | 参数名       | 类型    | 说明                                         |

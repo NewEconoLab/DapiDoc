@@ -11,6 +11,8 @@ toc_footers:
 includes:
   - _read.md
   - _write.md
+  - _tools.md
+  - _nns.md
   - _events.md
   - _errors.md
 

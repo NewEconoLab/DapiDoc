@@ -230,10 +230,10 @@ Convert the input hexStr to a BigInteger string
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## getDecimalsStrFromAssetAmount
+## getBigIntegerFromAssetAmount
 
 ```typescript
-Teemo.NEO.TOOLS.getDecimalsStrFromAssetAmount({
+Teemo.NEO.TOOLS.getBigIntegerFromAssetAmount({
         "amount":"12345.67890000",
         "assetID":"74f2dc36a68fdc4682034178eb2220729231db76",
         "network":"TestNet"
@@ -282,10 +282,10 @@ Convert the entered amount value to a BigInteger string based on the asset preci
 | description | String? | A description of the error which has occured |
 | data        | String? | Any raw data associated with the error       |
 
-## getBigIntegerFromAssetAmount
+## getDecimalsStrFromAssetAmount
 
 ```typescript
-Teemo.NEO.TOOLS.getBigIntegerFromAssetAmount({
+Teemo.NEO.TOOLS.getDecimalsStrFromAssetAmount({
         "amount":"1234567890000",
         "assetID":"74f2dc36a68fdc4682034178eb2220729231db76",
         "network":"TestNet"

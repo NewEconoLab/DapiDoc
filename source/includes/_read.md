@@ -853,93 +853,89 @@ Teemo.NEO.getApplicationLog({
 > 返回示例
 
 ```typescript
-[
-  {
-    "txid": "0x0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6",
-    "blockindex": 2544432,
-    "executions": [
-      {
-        "trigger": "Application",
-        "contract": "0xad23d4ccc2e8d4f2747ab15c35f2852761b8df51",
-        "vmstate": "HALT, BREAK",
-        "gas_consumed": "9.509",
-        "stack": [
-          {
-            "type": "Integer",
-            "value": "1"
+{
+  "txid": "0x0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6",
+  "executions": [
+    {
+      "trigger": "Application",
+      "contract": "0xad23d4ccc2e8d4f2747ab15c35f2852761b8df51",
+      "vmstate": "HALT, BREAK",
+      "gas_consumed": "9.509",
+      "stack": [
+        {
+          "type": "Integer",
+          "value": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
+          "state": {
+            "type": "Array",
+            "value": [
+              {
+                "type": "ByteArray",
+                "value": "6f7261636c654f70657261746f72"
+              },
+              {
+                "type": "ByteArray",
+                "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+              },
+              {
+                "type": "ByteArray",
+                "value": "736e656f5f7072696365"
+              },
+              {
+                "type": "ByteArray",
+                "value": ""
+              },
+              {
+                "type": "ByteArray",
+                "value": "20110443"
+              },
+              {
+                "type": "Integer",
+                "value": "2"
+              }
+            ]
           }
-        ],
-        "notifications": [
-          {
-            "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
-            "state": {
-              "type": "Array",
-              "value": [
-                {
-                  "type": "ByteArray",
-                  "value": "6f7261636c654f70657261746f72"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "736e656f5f7072696365"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": ""
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "20110443"
-                },
-                {
-                  "type": "Integer",
-                  "value": "2"
-                }
-              ]
-            }
-          },
-          {
-            "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
-            "state": {
-              "type": "Array",
-              "value": [
-                {
-                  "type": "ByteArray",
-                  "value": "6f7261636c654f70657261746f72"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "736e656f5f7072696365"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": ""
-                },
-                {
-                  "type": "Integer",
-                  "value": "1127710905"
-                },
-                {
-                  "type": "Integer",
-                  "value": "5"
-                }
-              ]
-            }
+        },
+        {
+          "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
+          "state": {
+            "type": "Array",
+            "value": [
+              {
+                "type": "ByteArray",
+                "value": "6f7261636c654f70657261746f72"
+              },
+              {
+                "type": "ByteArray",
+                "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+              },
+              {
+                "type": "ByteArray",
+                "value": "736e656f5f7072696365"
+              },
+              {
+                "type": "ByteArray",
+                "value": ""
+              },
+              {
+                "type": "Integer",
+                "value": "1127710905"
+              },
+              {
+                "type": "Integer",
+                "value": "5"
+              }
+            ]
           }
-        ]
-      }
-    ]
-  }
-]
-
+        }
+      ]
+    }
+  ]
+}
 ```
 
 根据TXID获取调用交易执行日志
@@ -956,7 +952,6 @@ Teemo.NEO.getApplicationLog({
 | 参数名                        | 类型               | 说明                              |
 |:---------------------------- |:--------------     |:--------------------------------- |
 | txid                         | String             | 交易Hash                          |
-| blockindex                   | Number             | 交易所在的区块高                   |
 | executions                   | execution[]        | 交易执行情组                       |
 | executions.trigger           | String             | 交易执行触发器种类                 |
 | executions.contract          | String             | 交易执行合约Hash                   |

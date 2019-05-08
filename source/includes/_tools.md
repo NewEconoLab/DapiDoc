@@ -220,10 +220,10 @@ Teemo.NEO.TOOLS.getBigIntegerFromHexstr("3fb83001")
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## getDecimalsStrFromAssetAmount_转换大整数金额为数值
+## getBigIntegerFromAssetAmount_转换数值金额为大整数
 
 ```typescript
-Teemo.NEO.TOOLS.getDecimalsStrFromAssetAmount({
+Teemo.NEO.TOOLS.getBigIntegerFromAssetAmount({
         "amount":"12345.67890000",
         "assetID":"74f2dc36a68fdc4682034178eb2220729231db76",
         "network":"TestNet"
@@ -270,10 +270,10 @@ Teemo.NEO.TOOLS.getDecimalsStrFromAssetAmount({
 | description | String? | 错误的说明                                    |
 | data        | String? | 错误的相关数据                                |
 
-## getBigIntegerFromAssetAmount_转换数值金额为大整数
+## getDecimalsStrFromAssetAmount_转换大整数金额为数值
 
 ```typescript
-Teemo.NEO.TOOLS.getBigIntegerFromAssetAmount({
+Teemo.NEO.TOOLS.getDecimalsStrFromAssetAmount({
         "amount":"1234567890000",
         "assetID":"74f2dc36a68fdc4682034178eb2220729231db76",
         "network":"TestNet"

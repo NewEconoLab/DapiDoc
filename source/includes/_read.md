@@ -852,93 +852,89 @@ Teemo.NEO.getApplicationLog({
 > Example Response
 
 ```typescript
-[
-  {
-    "txid": "0x0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6",
-    "blockindex": 2544432,
-    "executions": [
-      {
-        "trigger": "Application",
-        "contract": "0xad23d4ccc2e8d4f2747ab15c35f2852761b8df51",
-        "vmstate": "HALT, BREAK",
-        "gas_consumed": "9.509",
-        "stack": [
-          {
-            "type": "Integer",
-            "value": "1"
+{
+  "txid": "0x0c13d46dd72a47b61baf9b14cf787a8325f14cb1bfd5eafb7d407852e53299c6",
+  "executions": [
+    {
+      "trigger": "Application",
+      "contract": "0xad23d4ccc2e8d4f2747ab15c35f2852761b8df51",
+      "vmstate": "HALT, BREAK",
+      "gas_consumed": "9.509",
+      "stack": [
+        {
+          "type": "Integer",
+          "value": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
+          "state": {
+            "type": "Array",
+            "value": [
+              {
+                "type": "ByteArray",
+                "value": "6f7261636c654f70657261746f72"
+              },
+              {
+                "type": "ByteArray",
+                "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+              },
+              {
+                "type": "ByteArray",
+                "value": "736e656f5f7072696365"
+              },
+              {
+                "type": "ByteArray",
+                "value": ""
+              },
+              {
+                "type": "ByteArray",
+                "value": "20110443"
+              },
+              {
+                "type": "Integer",
+                "value": "2"
+              }
+            ]
           }
-        ],
-        "notifications": [
-          {
-            "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
-            "state": {
-              "type": "Array",
-              "value": [
-                {
-                  "type": "ByteArray",
-                  "value": "6f7261636c654f70657261746f72"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "736e656f5f7072696365"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": ""
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "20110443"
-                },
-                {
-                  "type": "Integer",
-                  "value": "2"
-                }
-              ]
-            }
-          },
-          {
-            "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
-            "state": {
-              "type": "Array",
-              "value": [
-                {
-                  "type": "ByteArray",
-                  "value": "6f7261636c654f70657261746f72"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": "736e656f5f7072696365"
-                },
-                {
-                  "type": "ByteArray",
-                  "value": ""
-                },
-                {
-                  "type": "Integer",
-                  "value": "1127710905"
-                },
-                {
-                  "type": "Integer",
-                  "value": "5"
-                }
-              ]
-            }
+        },
+        {
+          "contract": "0xfde69a7dd2a1c948977fb3ce512158987c0e2197",
+          "state": {
+            "type": "Array",
+            "value": [
+              {
+                "type": "ByteArray",
+                "value": "6f7261636c654f70657261746f72"
+              },
+              {
+                "type": "ByteArray",
+                "value": "55d6d86bdec15db437aca45b4e8705333f1fdb07"
+              },
+              {
+                "type": "ByteArray",
+                "value": "736e656f5f7072696365"
+              },
+              {
+                "type": "ByteArray",
+                "value": ""
+              },
+              {
+                "type": "Integer",
+                "value": "1127710905"
+              },
+              {
+                "type": "Integer",
+                "value": "5"
+              }
+            ]
           }
-        ]
-      }
-    ]
-  }
-]
-
+        }
+      ]
+    }
+  ]
+}
 ```
 
 Get the transaction execution log according to the TXID
@@ -955,7 +951,6 @@ The result will be returned directly from the CLI RPC interface
 | Parameter                    | Type               | Description                                                   |
 |:---------------------------- |:--------------     |:------------------------------------------------------------- |
 | txid                         | String             | Transaction Hash                                              |
-| blockindex                   | Number             | Transaction Block Height                                      |
 | executions                   | execution[]        | Transaction execution Array                                   |
 | executions.trigger           | String             | Transaction execution trigger type                            |
 | executions.contract          | String             | Transaction execution Script Hash                             |
